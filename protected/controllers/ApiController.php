@@ -22,6 +22,55 @@ class ApiController extends Controller
     // Actions
     public function actionList()
     {
+		// Get the respective model instance
+		switch($_GET['model'])
+		{
+			case 'kategorije':
+				$models = Kategorija::model()->findAll();
+				break;
+			case 'komentari':
+				$models = Komentar::model()->findAll();
+			case 'korisnici':
+				$models = Korisnik::model()->findAll();
+				break;
+			case 'log':
+				$models = Log::model()->findAll();
+				break;
+			case 'objekti':
+				$models = Objekat::model()->findAll();
+				break;
+			case 'objekat_has_kategorija':
+				$models = ObjekatHasKategorija::model()->findAll();
+				break;
+			case 'ocjene':
+				$models = Ocjena::model()->findAll();
+				break;
+			case 'privatneporuke':
+				$models = PrivatnaPoruka::model()->findAll();
+				break;
+			case 'recenzije':
+				$models = Recenzija::model()->findAll();
+				break;
+			default:
+				// Model not implemented error
+				$this->_sendResponse(501, sprintf(
+					'Error: Mode <b>list</b> is not implemented for model <b>%s</b>',
+					$_GET['model']) );
+				Yii::app()->end();
+		}
+		// Did we get some results?
+		if(empty($models)) {
+			// No
+			$this->_sendResponse(200, 
+					sprintf('No items where found for model <b>%s</b>', $_GET['model']) );
+		} else {
+			// Prepare response
+			$rows = array();
+			foreach($models as $model)
+				$rows[] = $model->attributes;
+			// Send the response
+			$this->_sendResponse(200, CJSON::encode($rows));
+		}
     }
     public function actionView()
     {

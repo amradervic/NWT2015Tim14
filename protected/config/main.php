@@ -57,6 +57,7 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+		
 // url manager za parsiranje urlova
         'urlManager'=>array(
         	'urlFormat'=>'path',
