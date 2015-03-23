@@ -74,6 +74,48 @@ class ApiController extends Controller
     }
     public function actionView()
     {
+		// Check if id was submitted via GET
+		if(!isset($_GET['id']))
+			$this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
+	 
+		switch($_GET['model'])
+		{
+			// Find respective model    
+			case 'kategorije':
+				$model = Kategorija::model()->findByPk($_GET['id']);
+				break;
+			case 'komentari':
+				$model = Komentar::model()->findByPk($_GET['id']);
+				break;
+			case 'korisnici':
+				$model = Korisnik::model()->findByPk($_GET['id']);
+				break;
+			case 'log':
+				$model = Log::model()->findByPk($_GET['id']);
+				break;
+			case 'objekti':
+				$model = Objekat::model()->findByPk($_GET['id']);
+				break;
+			case 'ocjene':
+				$model = Ocjena::model()->findByPk($_GET['id']);
+				break;
+			case 'privatneporuke':
+				$model = PrivatnaPoruka::model()->findByPk($_GET['id']);
+				break;
+			case 'recenzije':
+				$model = Recenzija::model()->findByPk($_GET['id']);
+				break;
+			default:
+				$this->_sendResponse(501, sprintf(
+					'Mode <b>view</b> is not implemented for model <b>%s</b>',
+					$_GET['model']) );
+				Yii::app()->end();
+		}
+		// Did we find the requested model? If not, raise an error
+		if(is_null($model))
+			$this->_sendResponse(404, 'No Item found with id '.$_GET['id']);
+		else
+			$this->_sendResponse(200, CJSON::encode($model));
     }
     public function actionCreate()
     {
