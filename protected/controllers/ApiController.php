@@ -247,9 +247,56 @@ public function actionUpdate()
         // ...
         $this->_sendResponse(500, $msg );
 }
-    public function actionDelete()
+public function actionDelete()
+{
+    switch($_GET['model'])
     {
+        // Load the respective model
+			case 'kategorije':
+				$model = Kategorija::model()->findByPk($_GET['id']);
+				break;
+			case 'komentari':
+				$model = Komentar::model()->findByPk($_GET['id']);
+				break;
+			case 'korisnici':
+				$model = Korisnik::model()->findByPk($_GET['id']);
+				break;
+			case 'log':
+				$model = Log::model()->findByPk($_GET['id']);
+				break;
+			case 'objekti':
+				$model = Objekat::model()->findByPk($_GET['id']);
+				break;
+			case 'ocjene':
+				$model = Ocjena::model()->findByPk($_GET['id']);
+				break;
+			case 'privatneporuke':
+				$model = PrivatnaPoruka::model()->findByPk($_GET['id']);
+				break;
+			case 'recenzije':
+				$model = Recenzija::model()->findByPk($_GET['id']);
+				break;
+        default:
+            $this->_sendResponse(501, 
+                sprintf('Error: Mode <b>delete</b> is not implemented for model <b>%s</b>',
+                $_GET['model']) );
+            Yii::app()->end();
     }
+    // Was a model found? If not, raise an error
+    if($model === null)
+        $this->_sendResponse(400, 
+                sprintf("Error: Didn't find any model <b>%s</b> with ID <b>%s</b>.",
+                $_GET['model'], $_GET['id']) );
+ 
+    // Delete the model
+    $num = $model->delete();
+    if($num>0)
+        $this->_sendResponse(200, $num);    //this is the only way to work with backbone
+    else
+        $this->_sendResponse(500, 
+                sprintf("Error: Couldn't delete model <b>%s</b> with ID <b>%s</b>.",
+                $_GET['model'], $_GET['id']) );
+}
 
 //funkcije
 
