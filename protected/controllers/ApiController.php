@@ -1,3 +1,5 @@
+<?php
+
 class ApiController extends Controller
 {
     // Members
@@ -408,3 +410,4 @@ private function _checkAuth()
 */
 
 }
+?>
