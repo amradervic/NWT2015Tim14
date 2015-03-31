@@ -121,6 +121,9 @@ class ApiController extends Controller
     }
     public function actionCreate()
     {
+		$json = file_get_contents('php://input'); //$GLOBALS['HTTP_RAW_POST_DATA'] is not preferred: http://www.php.net/manual/en/ini.core.php#ini.always-populate-raw-post-data
+		$put_vars = CJSON::decode($json,true);  //true means use associative array
+ 
 		switch($_GET['model'])
 		{
 			// Get an instance of the respective model
@@ -154,6 +157,7 @@ class ApiController extends Controller
 					$_GET['model']) );
 					Yii::app()->end();
 		}
+		/* 
 		// Try to assign POST values to attributes
 		foreach($_POST as $var=>$value) {
 			// Does the model have this attribute? If not raise an error
@@ -164,6 +168,18 @@ class ApiController extends Controller
 					sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>', $var,
 					$_GET['model']) );
 		}
+		*/
+		// JSON request
+    foreach($put_vars as $var=>$value) {
+        // Does model have this attribute? If not, raise an error
+        if($model->hasAttribute($var))
+            $model->$var = $value;
+        else {
+            $this->_sendResponse(500, 
+                sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>',
+                $var, $_GET['model']) );
+        }
+    }		
 		// Try to save the model
 		if($model->save())
 			$this->_sendResponse(200, CJSON::encode($model));
