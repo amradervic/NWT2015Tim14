@@ -1,22 +1,19 @@
 
 //we have to define like that, to call true myapp ing html and call bootstrap.css
-angular.module('myapp',['ui.bootstrap']);
+//angular.module('app',['ui.bootstrap']);
+var app = angular.module('app', []);
 //scope is a "glue" between view and controllerl, we will use it to define everything we need 
 
-function AccordionDemoCtrl($scope){
-$scope.oneAtATime = true;
-$scope.groups= [
-{
-title: "Dynamic group Header 1",
-content: "Dynamic Group Body 1";
-},
+app.service('CalculatorService', function(MathService){
+     
+    this.square = function(a) { return a*a; };
+ 
+});
 
-{
-title: "Dynamic group Header 2",
-content: "Dynamic Group Body 2";
-},
-
-];
-
-
-}
+app.controller('TestController', function($scope, CalculatorService) {
+    $scope.doSquare = function() {
+       // $scope.answer = CalculatorService.square($scope.number);
+	   $scope.answer = 5;
+    }
+ 
+});
