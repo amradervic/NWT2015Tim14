@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+<script src="js/angular.js"></script>
+<script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
+<script src="controllers/personController.js"></script>
+
+
+<link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div ng-app="myApp" ng-controller="personCtrl">
+
+First Name: <input type="text" ng-model="firstName"><br>
+Last Name: <input type="text" ng-model="lastName"><br>
+<br>
+Full Name: {{firstName + " " + lastName}}
+
+</div>
+    
+  
+<script>
+
+</script>  
+    
+</body>
+
+
+</html>
