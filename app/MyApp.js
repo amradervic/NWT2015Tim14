@@ -6,3 +6,5 @@
 var app = angular.module('myApp', []);
 //scope is a "glue" between view and controllerl, we will use it to define everything we need 
 var regApp = angular.module('regApp', []);
+//module for login
+var loginApp = angular.module('LoginApp', []);

@@ -3,30 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-	var placestogoApp = angular.module('placestogoApp', ['ngRoute']);
+//modul za glavnu app
+var placestogoApp = angular.module('placestogoApp', ['ngRoute']);
+//module for login
+//var loginApp = angular.module('LoginApp', []);
 
 	// configure our routes
-	placestogoApp.config(function($routeProvider) {
-		$routeProvider
+placestogoApp.config(function($routeProvider) {
+	$routeProvider
 
-			// route for the home page
-			.when('/', {
-				templateUrl : 'views/test.html',
-				controller  : 'mainController'
-			})
+            // route for the home page
+            .when('/', {
+			templateUrl : 'views/test.html',
+			controller  : 'mainController'
+		})
 
-			// route for the login page
-			.when('/login', {
-				templateUrl : 'views/login.html',
-				controller  : 'mainController'
-			})
+            // route for the login page
+            .when('/login', {
+			templateUrl : 'views/login.html',
+			controller  : 'mainController'
+		})
 
-			// route for the registration page
-			.when('/registration', {
-				templateUrl : 'views/registration.html',
-				controller  : 'mainController'
-			});
+            // route for the registration page
+            .when('/registration', {
+			templateUrl : 'views/registration.html',
+			controller  : 'mainController'
+		})
+             .otherwise({ redirectTo: '/home' });
+
 	});
 
 	// create the controller and inject Angular's $scope
@@ -36,3 +40,18 @@
 	});
 
 	
+//.run(['$rootScope', '$location', '$cookieStore', '$http',
+//    function ($rootScope, $location, $cookieStore, $http) {
+//        // keep user logged in after page refresh
+//        $rootScope.globals = $cookieStore.get('globals') || {};
+//        if ($rootScope.globals.currentUser) {
+//            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+//        }
+//  
+//        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+//            // redirect to login page if not logged in
+//            if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+//                $location.path('/login');
+//            }
+//        });
+//    }]);
