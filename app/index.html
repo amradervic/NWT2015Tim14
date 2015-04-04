@@ -1,24 +1,71 @@
 <!DOCTYPE html>
+<html ng-app="placestogoApp">
 <head>
 <script src="js/angular.js"></script>
 <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
 <script src="controllers/personController.js"></script>
+<script src="controllers/korisnikController.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="/MyApp.js"></script>
 
 
 <link href="css/bootstrap.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body  ng-controller="mainController">
 
-<div ng-app="myApp" ng-controller="personCtrl">
+     <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Places To-Go</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="#/"><i></i> Home</a></li>
+        <li><a href="#/login"><i></i> Login</a></li>
+        <li><a href="#/registration"><i></i> Registration</a></li>
+</ul>
+          </div>
+  </nav>
+   
+     <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+                <div ng-view>
+                    
+                </div>
+    
+  </div>
+<!--div ng-app="myApp" ng-controller="personCtrl">
 
 First Name: <input type="text" ng-model="firstName"><br>
 Last Name: <input type="text" ng-model="lastName"><br>
 <br>
-Full Name: {{firstName + " " + lastName}}
+Full Name: {{firstName + " " + lastName }}
+<br>
 
-</div>
+</div-->
+    
+<!-- <div ng-app="regApp" ng-controller="korisnikCtrl">
+
+<input type="text" ng-model="name"><br>
+<input type="text" ng-model="status"><br>
+
+
+<button ng-click="getCustomers()">Click Me1!</button>
+<button ng-click="informations()">Click Me!</button>
+<br>
+<ul>
+    <li ng-repeat="x in customers">
+      {{ x }}
+    </li>
+  </ul>-->
+
+<!--</div>-->
+    
     
   
 <script>

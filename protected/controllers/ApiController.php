@@ -1,10 +1,10 @@
 <?php
-
+ 
 class ApiController extends Controller
 {
     // Members
     /**
-     * Key which has to be in HTTP USERNAME and PASSWORD headers 
+     * Key which has to be in HTTP USERNAME and PASSWORD headers
      */
     Const APPLICATION_ID = 'ASCCPE';
  
@@ -24,180 +24,164 @@ class ApiController extends Controller
     // Actions
     public function actionList()
     {
-		// Get the respective model instance
-		switch($_GET['model'])
-		{
-			case 'kategorije':
-				$models = Kategorija::model()->findAll();
-				break;
-			case 'komentari':
-				$models = Komentar::model()->findAll();
-			case 'korisnici':
-				$models = Korisnik::model()->findAll();
-				break;
-			case 'log':
-				$models = Log::model()->findAll();
-				break;
-			case 'objekti':
-				$models = Objekat::model()->findAll();
-				break;
-			case 'objekat_has_kategorija':
-				$models = ObjekatHasKategorija::model()->findAll();
-				break;
-			case 'ocjene':
-				$models = Ocjena::model()->findAll();
-				break;
-			case 'privatneporuke':
-				$models = PrivatnaPoruka::model()->findAll();
-				break;
-			case 'recenzije':
-				$models = Recenzija::model()->findAll();
-				break;
-			default:
-				// Model not implemented error
-				$this->_sendResponse(501, sprintf(
-					'Error: Mode <b>list</b> is not implemented for model <b>%s</b>',
-					$_GET['model']) );
-				Yii::app()->end();
-		}
-		// Did we get some results?
-		if(empty($models)) {
-			// No
-			$this->_sendResponse(200, 
-					sprintf('No items where found for model <b>%s</b>', $_GET['model']) );
-		} else {
-			// Prepare response
-			$rows = array();
-			foreach($models as $model)
-				$rows[] = $model->attributes;
-			// Send the response
-			$this->_sendResponse(200, CJSON::encode($rows));
-		}
+                // Get the respective model instance
+                switch($_GET['model'])
+                {
+                        case 'kategorije':
+                                $models = Kategorija::model()->findAll();
+                                break;
+                        case 'komentari':
+                                $models = Komentar::model()->findAll();
+                        case 'korisnici':
+                                $models = Korisnik::model()->findAll();
+                                break;
+                        case 'log':
+                                $models = Log::model()->findAll();
+                                break;
+                        case 'objekti':
+                                $models = Objekat::model()->findAll();
+                                break;
+                        case 'objekat_has_kategorija':
+                                $models = ObjekatHasKategorija::model()->findAll();
+                                break;
+                        case 'ocjene':
+                                $models = Ocjena::model()->findAll();
+                                break;
+                        case 'privatneporuke':
+                                $models = PrivatnaPoruka::model()->findAll();
+                                break;
+                        case 'recenzije':
+                                $models = Recenzija::model()->findAll();
+                                break;
+                        default:
+                                // Model not implemented error
+                                $this->_sendResponse(501, sprintf(
+                                        'Error: Mode <b>list</b> is not implemented for model <b>%s</b>',
+                                        $_GET['model']) );
+                                Yii::app()->end();
+                }
+                // Did we get some results?
+                if(empty($models)) {
+                        // No
+                        $this->_sendResponse(200,
+                                        sprintf('No items where found for model <b>%s</b>', $_GET['model']) );
+                } else {
+                        // Prepare response
+                        $rows = array();
+                        foreach($models as $model)
+                                $rows[] = $model->attributes;
+                        // Send the response
+                        $this->_sendResponse(200, CJSON::encode($rows));
+                }
     }
     public function actionView()
     {
-		// Check if id was submitted via GET
-		if(!isset($_GET['id']))
-			$this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
-	 
-		switch($_GET['model'])
-		{
-			// Find respective model    
-			case 'kategorije':
-				$model = Kategorija::model()->findByPk($_GET['id']);
-				break;
-			case 'komentari':
-				$model = Komentar::model()->findByPk($_GET['id']);
-				break;
-			case 'korisnici':
-				$model = Korisnik::model()->findByPk($_GET['id']);
-				break;
-			case 'log':
-				$model = Log::model()->findByPk($_GET['id']);
-				break;
-			case 'objekti':
-				$model = Objekat::model()->findByPk($_GET['id']);
-				break;
-			case 'ocjene':
-				$model = Ocjena::model()->findByPk($_GET['id']);
-				break;
-			case 'privatneporuke':
-				$model = PrivatnaPoruka::model()->findByPk($_GET['id']);
-				break;
-			case 'recenzije':
-				$model = Recenzija::model()->findByPk($_GET['id']);
-				break;
-			default:
-				$this->_sendResponse(501, sprintf(
-					'Mode <b>view</b> is not implemented for model <b>%s</b>',
-					$_GET['model']) );
-				Yii::app()->end();
-		}
-		// Did we find the requested model? If not, raise an error
-		if(is_null($model))
-			$this->_sendResponse(404, 'No Item found with id '.$_GET['id']);
-		else
-			$this->_sendResponse(200, CJSON::encode($model));
+                // Check if id was submitted via GET
+                if(!isset($_GET['id']))
+                        $this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
+         
+                switch($_GET['model'])
+                {
+                        // Find respective model    
+                        case 'kategorije':
+                                $model = Kategorija::model()->findByPk($_GET['id']);
+                                break;
+                        case 'komentari':
+                                $model = Komentar::model()->findByPk($_GET['id']);
+                                break;
+                        case 'korisnici':
+                                $model = Korisnik::model()->findByPk($_GET['id']);
+                                break;
+                        case 'log':
+                                $model = Log::model()->findByPk($_GET['id']);
+                                break;
+                        case 'objekti':
+                                $model = Objekat::model()->findByPk($_GET['id']);
+                                break;
+                        case 'ocjene':
+                                $model = Ocjena::model()->findByPk($_GET['id']);
+                                break;
+                        case 'privatneporuke':
+                                $model = PrivatnaPoruka::model()->findByPk($_GET['id']);
+                                break;
+                        case 'recenzije':
+                                $model = Recenzija::model()->findByPk($_GET['id']);
+                                break;
+                        default:
+                                $this->_sendResponse(501, sprintf(
+                                        'Mode <b>view</b> is not implemented for model <b>%s</b>',
+                                        $_GET['model']) );
+                                Yii::app()->end();
+                }
+                // Did we find the requested model? If not, raise an error
+                if(is_null($model))
+                        $this->_sendResponse(404, 'No Item found with id '.$_GET['id']);
+                else
+                        $this->_sendResponse(200, CJSON::encode($model));
     }
     public function actionCreate()
     {
-		$json = file_get_contents('php://input'); //$GLOBALS['HTTP_RAW_POST_DATA'] is not preferred: http://www.php.net/manual/en/ini.core.php#ini.always-populate-raw-post-data
-		$put_vars = CJSON::decode($json,true);  //true means use associative array
- 
-		switch($_GET['model'])
-		{
-			// Get an instance of the respective model
-			case 'kategorije':
-				$model = new Kategorija;                    
-				break;
-			case 'komentari':
-				$model = new Komentar;                    
-				break;
-			case 'korisnici':
-				$model = new Korisnik;                    
-				break;
-			case 'log':
-				$model = new Log;                    
-				break;
-			case 'objekti':
-				$model = new Objekat;                    
-				break;
-			case 'ocjene':
-				$model = new Ocjena;                    
-				break;
-			case 'privatneporuke':
-				$model = new PrivatnaPoruka;                    
-				break;
-			case 'recenzije':
-				$model = new Recenzija;                    
-				break;
-			default:
-				$this->_sendResponse(501, 
-					sprintf('Mode <b>create</b> is not implemented for model <b>%s</b>',
-					$_GET['model']) );
-					Yii::app()->end();
-		}
-		/* 
-		// Try to assign POST values to attributes
-		foreach($_POST as $var=>$value) {
-			// Does the model have this attribute? If not raise an error
-			if($model->hasAttribute($var))
-				$model->$var = $value;
-			else
-				$this->_sendResponse(500, 
-					sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>', $var,
-					$_GET['model']) );
-		}
-		*/
-		// JSON request
-    foreach($put_vars as $var=>$value) {
-        // Does model have this attribute? If not, raise an error
-        if($model->hasAttribute($var))
-            $model->$var = $value;
-        else {
-            $this->_sendResponse(500, 
-                sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>',
-                $var, $_GET['model']) );
-        }
-    }		
-		// Try to save the model
-		if($model->save())
-			$this->_sendResponse(200, CJSON::encode($model));
-		else {
-			// Errors occurred
-			$msg = "<h1>Error</h1>";
-			$msg .= sprintf("Couldn't create model <b>%s</b>", $_GET['model']);
-			$msg .= "<ul>";
-			foreach($model->errors as $attribute=>$attr_errors) {
-				$msg .= "<li>Attribute: $attribute</li>";
-				$msg .= "<ul>";
-				foreach($attr_errors as $attr_error)
-					$msg .= "<li>$attr_error</li>";
-				$msg .= "</ul>";
-			}
-			$msg .= "</ul>";
-			$this->_sendResponse(500, $msg );
-		}
+                switch($_GET['model'])
+                {
+                        // Get an instance of the respective model
+                        case 'kategorije':
+                                $model = new Kategorija;                    
+                                break;
+                        case 'komentari':
+                                $model = new Komentar;                    
+                                break;
+                        case 'korisnici':
+                                $model = new Korisnik;                    
+                                break;
+                        case 'log':
+                                $model = new Log;                    
+                                break;
+                        case 'objekti':
+                                $model = new Objekat;                    
+                                break;
+                        case 'ocjene':
+                                $model = new Ocjena;                    
+                                break;
+                        case 'privatneporuke':
+                                $model = new PrivatnaPoruka;                    
+                                break;
+                        case 'recenzije':
+                                $model = new Recenzija;                    
+                                break;
+                        default:
+                                $this->_sendResponse(501,
+                                        sprintf('Mode <b>create</b> is not implemented for model <b>%s</b>',
+                                        $_GET['model']) );
+                                        Yii::app()->end();
+                }
+                // Try to assign POST values to attributes
+                foreach($_POST as $var=>$value) {
+                        // Does the model have this attribute? If not raise an error
+                        if($model->hasAttribute($var))
+                                $model->$var = $value;
+                        else
+                                $this->_sendResponse(500,
+                                        sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>', $var,
+                                        $_GET['model']) );
+                }
+                // Try to save the model
+                if($model->save())
+                        $this->_sendResponse(200, CJSON::encode($model));
+                else {
+                        // Errors occurred
+                        $msg = "<h1>Error</h1>";
+                        $msg .= sprintf("Couldn't create model <b>%s</b>", $_GET['model']);
+                        $msg .= "<ul>";
+                        foreach($model->errors as $attribute=>$attr_errors) {
+                                $msg .= "<li>Attribute: $attribute</li>";
+                                $msg .= "<ul>";
+                                foreach($attr_errors as $attr_error)
+                                        $msg .= "<li>$attr_error</li>";
+                                $msg .= "</ul>";
+                        }
+                        $msg .= "</ul>";
+                        $this->_sendResponse(500, $msg );
+                }
     }
 public function actionUpdate()
 {
@@ -209,39 +193,39 @@ public function actionUpdate()
     {
         // Find respective model
        
-		case 'kategorije':
-				$model = Kategorija::model()->findByPk($_GET['id']);
-				break;
-			case 'komentari':
-				$model = Komentar::model()->findByPk($_GET['id']);
-				break;
-			case 'korisnici':
-				$model = Korisnik::model()->findByPk($_GET['id']);
-				break;
-			case 'log':
-				$model = Log::model()->findByPk($_GET['id']);
-				break;
-			case 'objekti':
-				$model = Objekat::model()->findByPk($_GET['id']);
-				break;
-			case 'ocjene':
-				$model = Ocjena::model()->findByPk($_GET['id']);
-				break;
-			case 'privatneporuke':
-				$model = PrivatnaPoruka::model()->findByPk($_GET['id']);
-				break;
-			case 'recenzije':
-				$model = Recenzija::model()->findByPk($_GET['id']);
-				break;
+                case 'kategorije':
+                                $model = Kategorija::model()->findByPk($_GET['id']);
+                                break;
+                        case 'komentari':
+                                $model = Komentar::model()->findByPk($_GET['id']);
+                                break;
+                        case 'korisnici':
+                                $model = Korisnik::model()->findByPk($_GET['id']);
+                                break;
+                        case 'log':
+                                $model = Log::model()->findByPk($_GET['id']);
+                                break;
+                        case 'objekti':
+                                $model = Objekat::model()->findByPk($_GET['id']);
+                                break;
+                        case 'ocjene':
+                                $model = Ocjena::model()->findByPk($_GET['id']);
+                                break;
+                        case 'privatneporuke':
+                                $model = PrivatnaPoruka::model()->findByPk($_GET['id']);
+                                break;
+                        case 'recenzije':
+                                $model = Recenzija::model()->findByPk($_GET['id']);
+                                break;
         default:
-            $this->_sendResponse(501, 
+            $this->_sendResponse(501,
                 sprintf( 'Error: Mode <b>update</b> is not implemented for model <b>%s</b>',
                 $_GET['model']) );
             Yii::app()->end();
     }
     // Did we find the requested model? If not, raise an error
     if($model === null)
-        $this->_sendResponse(400, 
+        $this->_sendResponse(400,
                 sprintf("Error: Didn't find any model <b>%s</b> with ID <b>%s</b>.",
                 $_GET['model'], $_GET['id']) );
  
@@ -251,7 +235,7 @@ public function actionUpdate()
         if($model->hasAttribute($var))
             $model->$var = $value;
         else {
-            $this->_sendResponse(500, 
+            $this->_sendResponse(500,
                 sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>',
                 $var, $_GET['model']) );
         }
@@ -270,39 +254,39 @@ public function actionDelete()
     switch($_GET['model'])
     {
         // Load the respective model
-			case 'kategorije':
-				$model = Kategorija::model()->findByPk($_GET['id']);
-				break;
-			case 'komentari':
-				$model = Komentar::model()->findByPk($_GET['id']);
-				break;
-			case 'korisnici':
-				$model = Korisnik::model()->findByPk($_GET['id']);
-				break;
-			case 'log':
-				$model = Log::model()->findByPk($_GET['id']);
-				break;
-			case 'objekti':
-				$model = Objekat::model()->findByPk($_GET['id']);
-				break;
-			case 'ocjene':
-				$model = Ocjena::model()->findByPk($_GET['id']);
-				break;
-			case 'privatneporuke':
-				$model = PrivatnaPoruka::model()->findByPk($_GET['id']);
-				break;
-			case 'recenzije':
-				$model = Recenzija::model()->findByPk($_GET['id']);
-				break;
+                        case 'kategorije':
+                                $model = Kategorija::model()->findByPk($_GET['id']);
+                                break;
+                        case 'komentari':
+                                $model = Komentar::model()->findByPk($_GET['id']);
+                                break;
+                        case 'korisnici':
+                                $model = Korisnik::model()->findByPk($_GET['id']);
+                                break;
+                        case 'log':
+                                $model = Log::model()->findByPk($_GET['id']);
+                                break;
+                        case 'objekti':
+                                $model = Objekat::model()->findByPk($_GET['id']);
+                                break;
+                        case 'ocjene':
+                                $model = Ocjena::model()->findByPk($_GET['id']);
+                                break;
+                        case 'privatneporuke':
+                                $model = PrivatnaPoruka::model()->findByPk($_GET['id']);
+                                break;
+                        case 'recenzije':
+                                $model = Recenzija::model()->findByPk($_GET['id']);
+                                break;
         default:
-            $this->_sendResponse(501, 
+            $this->_sendResponse(501,
                 sprintf('Error: Mode <b>delete</b> is not implemented for model <b>%s</b>',
                 $_GET['model']) );
             Yii::app()->end();
     }
     // Was a model found? If not, raise an error
     if($model === null)
-        $this->_sendResponse(400, 
+        $this->_sendResponse(400,
                 sprintf("Error: Didn't find any model <b>%s</b> with ID <b>%s</b>.",
                 $_GET['model'], $_GET['id']) );
  
@@ -311,13 +295,13 @@ public function actionDelete()
     if($num>0)
         $this->_sendResponse(200, $num);    //this is the only way to work with backbone
     else
-        $this->_sendResponse(500, 
+        $this->_sendResponse(500,
                 sprintf("Error: Couldn't delete model <b>%s</b> with ID <b>%s</b>.",
                 $_GET['model'], $_GET['id']) );
 }
-
+ 
 //funkcije
-
+ 
 private function _sendResponse($status = 200, $body = '', $content_type = 'text/html')
 {
     // set the status
@@ -357,7 +341,7 @@ private function _sendResponse($status = 200, $body = '', $content_type = 'text/
                 break;
         }
  
-        // servers don't always have a signature turned on 
+        // servers don't always have a signature turned on
         // (this is an apache directive "ServerSignature On")
         $signature = ($_SERVER['SERVER_SIGNATURE'] == '') ? $_SERVER['SERVER_SOFTWARE'] . ' Server at ' . $_SERVER['SERVER_NAME'] . ' Port ' . $_SERVER['SERVER_PORT'] : $_SERVER['SERVER_SIGNATURE'];
  
@@ -381,7 +365,7 @@ private function _sendResponse($status = 200, $body = '', $content_type = 'text/
     }
     Yii::app()->end();
 }
-
+ 
 private function _getStatusCodeMessage($status)
 {
     // these could be stored in a .ini file and loaded
@@ -399,9 +383,9 @@ private function _getStatusCodeMessage($status)
     );
     return (isset($codes[$status])) ? $codes[$status] : '';
 }
-
+ 
 // funkcija za autorizaciju korisnika ako je potrebno
-
+ 
 /*
 private function _checkAuth()
 {
@@ -422,8 +406,8 @@ private function _checkAuth()
         $this->_sendResponse(401, 'Error: User Password is invalid');
     }
 }
-
+ 
 */
-
+ 
 }
 ?>
