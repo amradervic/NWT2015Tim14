@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//
-loginApp.controller('LoginController',
+/* global angular */
+
+angular.module('loginApp.controllers', [])
+.controller('LoginController',
     ['$scope', '$rootScope', '$location', 'LoginService',
     function ($scope, $rootScope, $location, LoginService) {
         // reset login status

@@ -1,7 +1,7 @@
 
 
-//regApp = angular.module('regApp', []);
-//regApp.controller('korisnikCtrl',  function($scope, dataFactory) {
+
+registrationApp.controller('korisnikController',  function($scope, korisnikFactory) {
 //  /* $scope.name= "Melika";
 //    $scope.password= "";
 //    $scope.email="";
@@ -23,6 +23,6 @@
 //       $scope.status = 'Unable to load customer data: ';
 //        return $scope.status; 
 //    }
-//});
+});
 //
 // 
