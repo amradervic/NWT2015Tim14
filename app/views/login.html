@@ -6,9 +6,9 @@
      <p>Fields with * are required.</p>
      <br>
      <div ng-show="error" class="alert alert-danger">{{error}}</div>
-     <form ng-submit="login()" role="form">
+     <form ng-submit="login()" role="form" ng-app="LoginApp" ng-controller="LoginController">
 
-<div class="form-group" ng-controller="loginController" ng-app="loginApp">
+<div class="form-group">
         <label for="username">Username*</label>
         <i class="fa fa-key"></i>
         <input type="text" name="username" id="username" class="form-control" ng-model="username" required size="30"/>
