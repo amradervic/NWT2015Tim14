@@ -1,21 +1,17 @@
+"use strict";
+var services = angular.module('services', ['ngResource']);
+var controllers = angular.module('controllers', ['ngResource']);
 
-/* global angular */
+var app, deps;
 
-//we have to define like that, to call true myapp ing html and call bootstrap.css
-//angular.module('app',['ui.bootstrap']);
-var app = angular.module('myApp', []);
-//scope is a "glue" between view and controllerl, we will use it to define everything we need 
-var registrationApp = angular.module('registrationApp', []);
-//module for login
-var loginApp = angular.module('loginApp',  
-    ['LoginApp.services',
-     'LoginApp.controllers']);
-var placestogoApp = angular.module('placestogoApp', ['ngRoute']);
-//module for login
-//var loginApp = angular.module('LoginApp', []);
+  deps = ['treeGrid','xtForm',
+          'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
+          'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser'/*,'directive'*/];
+
+app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers']);
 
 // konfiguracija ruta
-placestogoApp.config(function($routeProvider, $httpProvider) {
+app.config(function($routeProvider, $httpProvider) {
 	$routeProvider
 
             // route for the home page
@@ -23,6 +19,12 @@ placestogoApp.config(function($routeProvider, $httpProvider) {
 			templateUrl : 'views/test.html',
 			controller  : 'mainController'
 		})
+                
+                 .when('/ocjena', {
+			templateUrl : 'index.html',
+			controller  : 'ocjenaController'
+		})
+
 
             // route for the login page
             .when('/login', {
@@ -40,18 +42,18 @@ placestogoApp.config(function($routeProvider, $httpProvider) {
 	});
         
         //dio koji sluzi da user i dalje ostane logovan na stranici i prilikom ucitavanja drugih stranica
-//        .run(['$rootScope', '$location', '$cookieStore', '$http',
-//    function ($rootScope, $location, $cookieStore, $http) {
-//        // keep user logged in after page refresh
-//        $rootScope.globals = $cookieStore.get('globals') || {};
-//        if ($rootScope.globals.currentUser) {
-//            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-//        }
-//  
-//        $rootScope.$on('$locationChangeStart', function (event, next, current) {
-//            // redirect to home page if not logged in
-//            if ($location.path() !== '/' && !$rootScope.globals.currentUser) {
-//                $location.path('/');
-//            }
-//        });
-//    }]);
+       /* .run(['$rootScope', '$location', '$cookieStore', '$http',
+    function ($rootScope, $location, $cookieStore, $http) {
+        // keep user logged in after page refresh
+        $rootScope.globals = $cookieStore.get('globals') || {};
+        if ($rootScope.globals.currentUser) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+        }
+  
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            // redirect to home page if not logged in
+            if ($location.path() !== '/' && !$rootScope.globals.currentUser) {
+                $location.path('/');
+            }
+        });
+    }]);*/

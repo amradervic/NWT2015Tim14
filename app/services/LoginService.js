@@ -1,8 +1,6 @@
-
-/* global angular */
-
+//'use strict';
 //  
-angular.module('loginApp.services', [])
+loginApp
 .factory('LoginService',
     ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
     function (Base64, $http, $cookieStore, $rootScope, $timeout) {

@@ -5,12 +5,12 @@
  */
 
 
-regApp.factory('korisnikFactory',  function($http) {
+regApp.factory('dataFactory',  function($http) {
 
     var urlBase = '/api/korisnici/'+ '?callback=JSON_CALLBACK';
-    var korisnikFactory = {};
+    var dataFactory = {};
 
-    korisnikFactory.getCustomers = function () {
+    dataFactory.getCustomers = function () {
         return $http.get(urlBase);
        
     };
@@ -35,6 +35,6 @@ regApp.factory('korisnikFactory',  function($http) {
         return $http.get(urlBase + '/' + id + '/orders');
     };
 */
-        return korisnikFactory;
+        return dataFactory;
 });
 

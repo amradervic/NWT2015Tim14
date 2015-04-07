@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html ng-app="placestogoApp">
 <head>
 <script src="js/angular.js"></script>
+<script src="js/angular-route.js"></script>
+<script src="js/angular-resource.js"></script>
 <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
-<script src="controllers/personController.js"></script>
-<script src="controllers/korisnikController.js"></script>
-<!--<script src="controllers/mainController.js"></script>-->
-<script src="controllers/loginController.js"></script>
+<!--<script src="controllers/personController.js"></script>-->
+<!--<script src="controllers/korisnikController.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="controllers/loginController.js"></script> -->
 <script src="controllers/app.js"></script>
+<script src="services/ocjenaService.js"></script>
+<script src="controllers/ocjenaController.js"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet">
-<title>Places To-Go</title>
+
 </head>
 
-<body>
+<body  ng-app="placestogoApp">
 
      <nav class="navbar navbar-default">
     <div class="container">
@@ -69,11 +72,17 @@ Full Name: {{firstName + " " + lastName }}
     
     
   
-<script>
 
-</script>  
-    
+<div ng-controller="ocjenaController">
+<form>
+    <input type="text" name="username" id="username" placeholder="Username" ng-model="unos" />
+   
+    <button type="submit" ng-click="insertOcjena();">Kreiraj ocjenu</button> {{unos}}
+    <br>
+    Answer: {{ocjene}}
+</form>
+</div>
+
 </body>
 
 
-</html>

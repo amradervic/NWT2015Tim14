@@ -26,3 +26,13 @@ Stack trace:
 REQUEST_URI=/NWT2015Tim14/index.php?r=gii/model/code&id=0
 HTTP_REFERER=http://localhost/NWT2015Tim14/index.php?r=gii/model/index
 ---
+2015/04/06 00:36:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ocjene".' in C:\wamp\www\YiiRoot\framework\web\CController.php:483
+Stack trace:
+#0 C:\wamp\www\YiiRoot\framework\web\CController.php(270): CController->missingAction('ocjene')
+#1 C:\wamp\www\YiiRoot\framework\web\CWebApplication.php(282): CController->run('ocjene')
+#2 C:\wamp\www\YiiRoot\framework\web\CWebApplication.php(141): CWebApplication->runController('api/ocjene/post')
+#3 C:\wamp\www\YiiRoot\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#4 C:\wamp\www\NWT2015Tim14\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/NWT2015Tim14/index.php/api/ocjene/post
+---
