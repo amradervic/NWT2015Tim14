@@ -5,7 +5,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
   //  $scope.ocjene='reii';
     //$scope.orders;
    
-
+    insertOcjena();
     getOcjene();
 
     function getOcjene() {
@@ -39,13 +39,17 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
 
     function insertOcjena(){
         //Fake customer data
-       
+
         var ocj = {
-            ID: 10,
-            IDosobe: 1,
-            IDobjekta:1,
-            Vrijednost: 5
+
+
+            "vrijednost": 2,
+            "Objekat_idObjekat": 3,
+            "Korisnici_idKorisnik":"blabla"
         };
+
+
+
         ocjenaFactory.insertOcjena(ocj)
             .success(function (data) {
                 $scope.status = 'Inserted Ocjena! Refreshing ocjena list.';
