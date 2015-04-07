@@ -1,9 +1,9 @@
 controllers.controller('ocjenaController',['$scope', 'ocjenaFactory', 
         function ($scope, ocjenaFactory) {
 
-    $scope.status;
-    $scope.ocjene='reii';
-    $scope.orders;
+    //$scope.status;
+  //  $scope.ocjene='reii';
+    //$scope.orders;
    
 
     getOcjene();
@@ -55,7 +55,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
             error(function(error) {
                 $scope.status = 'Unable to insert ocjena: ' + error.message;
             });
-    };
+        }
 
     $scope.deleteOcjena = function (id) {
         ocjenaFactory.deleteOcjena(id)
