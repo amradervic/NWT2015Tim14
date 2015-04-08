@@ -17,6 +17,8 @@
 <script src="controllers/objekatController.js"></script>
 <script src="services/logService.js"></script>
 <script src="controllers/logController.js"></script>
+<script src="services/porukaService.js"></script>
+<script src="controllers/porukaController.js"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
 <script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>
@@ -102,18 +104,18 @@ Full Name: {{firstName + " " + lastName }}
 
 
 
-<div ng-controller="objekatController">
+<div ng-controller="ocjenaController">
 <form>
     <input type="text" name="username2" id="username2" placeholder="Username" ng-model="unos" />
    
-    <button type="submit" ng-click="insertObjekat();">Kreiraj objekat</button> {{unos}}
+    <button type="submit" ng-click="insertPoruka();">Kreiraj objekat</button> {{unos}}
     <br>
-    Answer: {{objekti}}
+    Answer: {{ocjene}}
 </form>
 </div>
+
+
 -->
-
-
 </body>
 
 

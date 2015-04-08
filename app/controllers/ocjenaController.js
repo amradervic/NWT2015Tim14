@@ -4,10 +4,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
     //$scope.status;
   //  $scope.ocjene='reii';
     //$scope.orders;
-   
-    insertOcjena();
-    getOcjene();
-
+  // getOcjena(3);
     function getOcjene() {
         ocjenaFactory.getOcjene()
             .success(function (_ocjene) {
@@ -17,18 +14,27 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
                 $scope.status = 'Unable to load ocjene data: ' + error.message;
             });
     }
+    function getOcjena(id) {
+        ocjenaFactory.getOcjena(id)
+            .success(function (_ocjene) {
+                $scope.ocjene = _ocjene;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load ocjene data: ' + error.message;
+            });
+    }
 
-    $scope.updateOcjena = function (id) {
-        var ocj;
-        for (var i = 0; i < $scope.ocjene.length; i++) {
+    function updateOcjena(ocj, id) {
+      //  var ocj;
+      /*  for (var i = 0; i < $scope.ocjene.length; i++) {
             var currOcjena = $scope.ocjene[i];
             if (currOcjena.ID === id) {
                 ocj = currOcjena;
                 break;
             }
         }
-
-        ocjenaFactory.updateOcjena(ocj)
+*/
+        ocjenaFactory.updateOcjena(ocj,id)
           .success(function () {
               $scope.status = 'Updated Ocjena! Refreshing ocjena list.';
           })
@@ -37,17 +43,17 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
           });
     };
 
-    function insertOcjena(){
+    function insertOcjena(ocj){
         //Fake customer data
 
-        var ocj = {
+       /* var ocj = {
 
 
             "vrijednost": "4",
             "Objekat_idObjekat": "1",
             "Korisnici_idKorisnik":"426b0556-dd7c-11e4-b520-00269e6cceac"
         };
-
+*/
 
 
         ocjenaFactory.insertOcjena(ocj)
@@ -79,6 +85,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
         });
     };
 
+/*
     $scope.getOcjeneOrders = function (id) {
         ocjenaFactory.getOrders(id)
         .success(function (orders) {
@@ -88,7 +95,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
         .error(function (error) {
             $scope.status = 'Error retrieving ocjene! ' + error.message;
         });
-    };
+    };  */
 }]);
 
 

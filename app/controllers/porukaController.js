@@ -2,12 +2,9 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         function ($scope, porukaFactory) {
 
     //$scope.status;
-   $scope.poruke='reii';
+  // $scope.poruke='reii';
     //$scope.orders;
    
-
-    getPoruke();
-
 
     function getPoruke() {
         porukaFactory.getPoruke()
@@ -19,17 +16,31 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
             });
     }
 
-    function updatePoruka(id) {
-        var por;
+    function getPoruka(id) {
+        porukaFactory.getPoruka(id)
+            .success(function (_poruke) {
+                $scope.poruke = _poruke;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load poruke data: ' + error.message;
+            });
+    }
+
+    function updatePoruka(por, id) {
+      /*       var por = {
+          
+            "naslov": "test",
+            "poruka": "poeruka test",
+
+        };
         for (var i = 0; i < $scope.poruke.length; i++) {
             var currPoruka = $scope.poruke[i];
             if (currPoruka.ID === id) {
-                por = currPoruka;
+                por.ID = currPoruka.ID;
                 break;
             }
-        }
-
-        porukaFactory.updatePoruka(por)
+        }*/
+        porukaFactory.updatePoruka(por,id)
           .success(function () {
               $scope.status = 'Updated Poruka! Refreshing poruka list.';
           })
@@ -38,17 +49,17 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
           });
     };
 
-    function insertPoruka(){
+    function insertPoruka(por){
         //Fake  data
-
+/*
         var por = {
-
-
-            "vrijednost": 2,
-            "Objekat_idObjekat": 3,
-            "Korisnici_idKorisnik":"blabla"
+          
+            "naslov": "test",
+            "poruka": "poeruka test",
+            "Korisnici_idKorisnik": "47b0997a-d222-11e4-a5ae-74867a3dbcef",
+            "Korisnici_idKorisnik1":"574b9989-d256-11e4-a5ae-74867a3dbcef"
         };
-
+*/
 
         porukaFactory.insertPoruka(por)
             .success(function (data) {

@@ -21,8 +21,8 @@ services.factory('ocjenaFactory', function($http) {
         return $http.post(urlBase, ocjena);
     };
 
-    factory.updateOcjena = function (ocjena) {
-        return $http.put(urlBase + '/' + ocjena.ID, ocjena);
+    factory.updateOcjena = function (ocjena, id) {
+        return $http.put(urlBase + '/' + id, ocjena);
     };
 
     factory.deleteOcjena = function (id) {

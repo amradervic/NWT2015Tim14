@@ -21,8 +21,8 @@ services.factory('porukaFactory', function($http) {
         return $http.post(urlBase, poruka);
     };
 
-    factory.updatePoruka = function (poruka) {
-        return $http.put(urlBase + '/' + poruka.ID, poruka);
+    factory.updatePoruka = function (poruka,id) {
+        return $http.put(urlBase + '/' + id, poruka);
     };
 
     factory.deletePoruka = function (id) {
