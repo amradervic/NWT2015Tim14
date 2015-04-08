@@ -29,6 +29,7 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         }
 
         porukaFactory.updatePoruka(ocj)
+          .success(function () {
               $scope.status = 'Updated Poruka! Refreshing poruka list.';
           })
           .error(function (error) {
@@ -89,6 +90,5 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         });
     };
 }]);
-
 
 
