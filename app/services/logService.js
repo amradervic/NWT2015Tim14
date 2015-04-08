@@ -15,18 +15,18 @@ services.factory('logFactory', function($http) {
         return $http.post(urlBase, log);
     };
 
-    factory.updateLog = function (log) {
-        return $http.put(urlBase + '/' + log.ID, log);
+    factory.updateLog = function (log, id) {
+        return $http.put(urlBase + '/' + id, log);
     };
 
     factory.deleteLog = function (id) {
         return $http.delete(urlBase + '/' + id);
     };
-
+/*
     factory.getOrders = function (id) {
         return $http.get(urlBase + '/' + id + '/orders');
     };
- 
+ */
     return factory;
 });
 

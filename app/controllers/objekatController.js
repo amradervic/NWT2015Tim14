@@ -5,9 +5,9 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
   //  $scope.objekti='reii';
    // $scope.orders;
    
-	insertObjekat();
-    getObjekti();
-
+//	insertObjekat();
+   // getObjekti();
+//
 //dobavljanje svih objekata
     function getObjekti() {
         objekatFactory.getObjekti()
@@ -18,10 +18,20 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
                 $scope.status = 'Unable to load objekti data: ' + error.message;
             });
     }
+// dobavljanje objekta
+    function getObjekat(id) {
+        objekatFactory.getObjekat(id)
+            .success(function (_objekti) {
+                $scope.objekti = _objekti;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load objekti data: ' + error.message;
+            });
+    }
 
 //update objekta
-    $scope.updateObjekat = function (id) {
-        var obj;
+    function updateObjekat(obj, id) {
+    /*    var obj;
         for (var i = 0; i < $scope.objekti.length; i++) {
             var currObjekat = $scope.objekti[i];
             if (currObjekat.ID === id) {
@@ -29,7 +39,7 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
                 break;
             }
         }
-
+*/
         objekatFactory.updateObjekat(obj)
           .success(function () {
               $scope.status = 'Updated Objekat! Refreshing objekat list.';
@@ -40,8 +50,8 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
     };
 
 //dodavanje objekta
-    function insertObjekat(){
-         
+    function insertObjekat(obj){
+         /*
         var obj = {
 			"naziv": "amrads",
 			"adresa": "amrads",
@@ -49,6 +59,7 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
 			"tip": "amrads",
 			"opis": "amrads"
         };
+        */
         objekatFactory.insertObjekat(obj)
             .success(function (data) {
                 $scope.status = 'Inserted Objekat! Refreshing objekat list.';
@@ -61,7 +72,7 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
 		}
 
 //brisanje objekta
-    $scope.deleteObjekat = function (id) {
+    function deleteObjekat(id) {
         objekatFactory.deleteObjekat(id)
         .success(function () {
             $scope.status = 'Deleted Objekat! Refreshing objekat list.';
@@ -78,7 +89,7 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
             $scope.status = 'Unable to delete korisnici: ' + error.message;
         });
     };
-
+/*
     $scope.getObjektiOrders = function (id) {
         objekatFactory.getOrders(id)
         .success(function (orders) {
@@ -89,5 +100,6 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
             $scope.status = 'Error retrieving korisnici! ' + error.message;
         });
     };
+    */
 }]);
 

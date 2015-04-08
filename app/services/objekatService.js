@@ -15,8 +15,8 @@ services.factory('objekatFactory', function($http) {
         return $http.post(urlBase, objekat);
     };
 
-    factory.updateObjekat = function (objekat) {
-        return $http.put(urlBase + '/' + objekat.ID, objekat);
+    factory.updateObjekat = function (objekat, id) {
+        return $http.put(urlBase + '/' + id, objekat);
     };
 
     factory.deleteObjekat = function (id) {

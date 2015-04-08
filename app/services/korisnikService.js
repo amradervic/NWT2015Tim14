@@ -15,18 +15,18 @@ services.factory('korisnikFactory', function($http) {
         return $http.post(urlBase, korisnik);
     };
 
-    factory.updateKorisnik = function (korisnik) {
-        return $http.put(urlBase + '/' + korisnik.ID, korisnik);
+    factory.updateKorisnik = function (korisnik, id) {
+        return $http.put(urlBase + '/' + id, korisnik);
     };
 
     factory.deleteKorisnik = function (id) {
         return $http.delete(urlBase + '/' + id);
     };
-
+/*
     factory.getOrders = function (id) {
         return $http.get(urlBase + '/' + id + '/orders');
     };
- 
+ */
     return factory;
 });
 

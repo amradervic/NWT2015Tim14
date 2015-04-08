@@ -6,8 +6,8 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
   //  $scope.orders;
    
 
-	insertKorisnik();
-	getKorisnici();
+//	insertKorisnik();
+  
 	
     function getKorisnici() {
         korisnikFactory.getKorisnici()
@@ -19,8 +19,19 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
             });
     }
 
-    $scope.updateKorisnik = function (id) {
-        var kor;
+    function getKorisnik(id) {
+        korisnikFactory.getKorisnik(id)
+            .success(function (_korisnici) {
+                $scope.korisnici = _korisnici;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load korisnici data: ' + error.message;
+            });
+    }
+
+
+    function updateKorisnik(kor, id) {
+        /*var kor;
         for (var i = 0; i < $scope.korisnici.length; i++) {
             var currKorisnik = $scope.korisnici[i];
             if (currKorisnik.ID === id) {
@@ -28,8 +39,8 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
                 break;
             }
         }
-
-        korisnikFactory.updateKorisnik(kor)
+*/
+        korisnikFactory.updateKorisnik(kor, id)
           .success(function () {
               $scope.status = 'Updated Korisnik! Refreshing korisnik list.';
           })
@@ -38,10 +49,10 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
           });
     };
 
-    function insertKorisnik(){
+    function insertKorisnik(kor){
         //Fake customer data
        //nema veze sto je idKorisnika null jer nikad nece biti null upisano u bazu, nego ce se odmah uuid generisati i unijeti 
-        var kor = {
+   /*     var kor = {
 			"idKorisnik": "null",
 			"korisnickoIme": "amradervic",
 			"sifra": "amrad",
@@ -49,7 +60,7 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
 			"tip": "obicni",
 			"aktivan": "1",
 			"banovan": "0" 
-		 };
+		 };*/
         korisnikFactory.insertKorisnik(kor)
             .success(function (data) {
                 $scope.status = 'Inserted Korisnik! Refreshing korisnik list.';
@@ -92,7 +103,7 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
 		//document.getElementById("errorBox").innerHTML="ime glasi"+username;
 	}
 
-    $scope.deleteKorisnik = function (id) {
+    function deleteKorisnik(id) {
         korisnikFactory.deleteKorisnik(id)
         .success(function () {
             $scope.status = 'Deleted Korisnik! Refreshing korisnik list.';
@@ -109,7 +120,7 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
             $scope.status = 'Unable to delete korisnici: ' + error.message;
         });
     };
-
+/*
     $scope.getKorisniciOrders = function (id) {
         korisnikFactory.getOrders(id)
         .success(function (orders) {
@@ -119,5 +130,5 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
         .error(function (error) {
             $scope.status = 'Error retrieving korisnici! ' + error.message;
         });
-    };
+    };*/
 }]);
