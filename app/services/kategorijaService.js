@@ -4,28 +4,28 @@
  * and open the template in the editor.
  */
 
-services.factory('komentarFactory', function($http) {
+services.factory('ocjenaFactory', function($http) {
 
     var factory = {};
-    var urlBase='/NWT2015Tim14/index.php/api/komentari';
+    var urlBase='/NWT2015Tim14/index.php/api/kategorije';
 
-    factory.getKomentare = function () {
+    factory.getKategorije = function () {
         return $http.get(urlBase);
     };
 
-    factory.getKomentar = function (id) {
+    factory.getKategorija = function (id) {
         return $http.get(urlBase + '/' + id);
     };
 
-    factory.insertKomentar = function (komentar) {
-        return $http.post(urlBase, komentar);
+    factory.insertKategorija = function (ocjena) {
+        return $http.post(urlBase, ocjena);
     };
 
-    factory.updateKomentar = function (komentar) {
-        return $http.put(urlBase + '/' + komentar.ID, komentar);
+    factory.updateKategorija = function (ocjena, id) {
+        return $http.put(urlBase + '/' + id, ocjena);
     };
 
-    factory.deleteKomentar = function (id) {
+    factory.deleteKategorija = function (id) {
         return $http.delete(urlBase + '/' + id);
     };
 

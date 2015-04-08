@@ -1,12 +1,25 @@
 controllers.controller('komentarController',['$scope', 'komentarFactory',
     function ($scope, komentarFactory) {
 
-        //$scope.status;
-        //  $scope.komentare='reii';
-        //$scope.orders;
+        
+        //getKomentare();
+       // getKomentar(1);
 
 
-        getKomentare();
+         /*var kom = {
+
+
+         "tekst": "ovo je komentar sine",
+         "vrijemeObjave": "2015-04-08 13:35:44",
+         "Recenzija_idRecenzija":"1",
+         "Korisnici_idKorisnik":"1"
+         };*/
+
+
+        //insertKomentar(kom);
+        //deleteKomentar(2);
+        // updateKomentar(kom,1);
+
 
         function getKomentare() {
             komentarFactory.getKomentare()
@@ -17,18 +30,28 @@ controllers.controller('komentarController',['$scope', 'komentarFactory',
                     $scope.status = 'Unable to load komentare data: ' + error.message;
                 });
         }
+        function getKomentar(id) {
+            komentarFactory.getKomentar(id)
+                .success(function (_komentare) {
 
-        $scope.updateKomentar = function (id) {
-            var ocj;
-            for (var i = 0; i < $scope.komentare.length; i++) {
-                var currkomentar = $scope.komentare[i];
-                if (currkomentar.ID === id) {
-                    ocj = currkomentar;
-                    break;
-                }
-            }
+                    $scope.komentare = _komentare;
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load komentare data: ' + error.message;
+                });
+        }
 
-            komentarFactory.updateKomentar(ocj)
+        function updateKomentar(kom, id) {
+            //  var kom;
+            /*  for (var i = 0; i < $scope.komentare.length; i++) {
+             var currkomentar = $scope.komentare[i];
+             if (currkomentar.ID === id) {
+             kom = currkomentar;
+             break;
+             }
+             }
+             */
+            komentarFactory.updateKomentar(kom,id)
                 .success(function () {
                     $scope.status = 'Updated komentar! Refreshing komentar list.';
                 })
@@ -37,19 +60,23 @@ controllers.controller('komentarController',['$scope', 'komentarFactory',
                 });
         };
 
-        function insertKomentar(){
+        function insertKomentar(kom){
             //Fake customer data
 
-            var ocj = {
-                ID: 10,
-                IDosobe: 1,
-                IDobjekta:1,
-                Vrijednost: 5
-            };
-            komentarFactory.insertKomentar(ocj)
+            /* var kom = {
+
+
+             "vrijednost": "4",
+             "Objekat_idObjekat": "1",
+             "Korisnici_idKorisnik":"426b0556-dd7c-11e4-b520-00269e6cceac"
+             };
+             */
+
+
+            komentarFactory.insertKomentar(kom)
                 .success(function (data) {
                     $scope.status = 'Inserted komentar! Refreshing komentar list.';
-                    $scope.komentare.push(ocj);
+                    $scope.komentare.push(kom);
                     console.log(data);
                 }).
                 error(function(error) {
@@ -57,13 +84,14 @@ controllers.controller('komentarController',['$scope', 'komentarFactory',
                 });
         }
 
-        $scope.deleteKomentar = function (id) {
+
+        function deleteKomentar (id) {
             komentarFactory.deleteKomentar(id)
                 .success(function () {
                     $scope.status = 'Deleted komentar! Refreshing komentar list.';
                     for (var i = 0; i < $scope.komentare.length; i++) {
-                        var ocj = $scope.komentare[i];
-                        if (ocj.ID === id) {
+                        var kom = $scope.komentare[i];
+                        if (kom.ID === id) {
                             $scope.komentare.splice(i, 1);
                             break;
                         }
@@ -75,16 +103,17 @@ controllers.controller('komentarController',['$scope', 'komentarFactory',
                 });
         };
 
-        $scope.getKomentareOrders = function (id) {
-            komentarFactory.getOrders(id)
-                .success(function (orders) {
-                    $scope.status = 'Retrieved orders!';
-                    $scope.orders = orders;
-                })
-                .error(function (error) {
-                    $scope.status = 'Error retrieving Komentare! ' + error.message;
-                });
-        };
+        /*
+         $scope.getkomentareOrders = function (id) {
+         komentarFactory.getOrders(id)
+         .success(function (orders) {
+         $scope.status = 'Retrieved orders!';
+         $scope.orders = orders;
+         })
+         .error(function (error) {
+         $scope.status = 'Error retrieving komentare! ' + error.message;
+         });
+         };  */
     }]);
 
 
