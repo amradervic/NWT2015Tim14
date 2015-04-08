@@ -7,7 +7,7 @@
 services.factory('porukaFactory', function($http) {
      
     var factory = {}; 
-    var urlBase='/NWT2015Tim14/index.php/api/poruke';
+    var urlBase='/NWT2015Tim14/index.php/api/privatneporuke';
  
    factory.getPoruke = function () {
         return $http.get(urlBase);
@@ -29,9 +29,6 @@ services.factory('porukaFactory', function($http) {
         return $http.delete(urlBase + '/' + id);
     };
 
-    factory.getOrders = function (id) {
-        return $http.get(urlBase + '/' + id + '/orders');
-    };
  
     return factory;
 });

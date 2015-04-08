@@ -2,11 +2,12 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         function ($scope, porukaFactory) {
 
     //$scope.status;
-  //  $scope.poruke='reii';
+   $scope.poruke='reii';
     //$scope.orders;
    
-    insertporuka();
-    getporuke();
+
+    getPoruke();
+
 
     function getPoruke() {
         porukaFactory.getPoruke()
@@ -18,17 +19,17 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
             });
     }
 
-    $scope.updatePoruka = function (id) {
-        var ocj;
+    function updatePoruka(id) {
+        var por;
         for (var i = 0; i < $scope.poruke.length; i++) {
             var currPoruka = $scope.poruke[i];
             if (currPoruka.ID === id) {
-                ocj = currPoruka;
+                por = currPoruka;
                 break;
             }
         }
 
-        porukaFactory.updatePoruka(ocj)
+        porukaFactory.updatePoruka(por)
           .success(function () {
               $scope.status = 'Updated Poruka! Refreshing poruka list.';
           })
@@ -38,9 +39,9 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
     };
 
     function insertPoruka(){
-        //Fake customer data
+        //Fake  data
 
-        var ocj = {
+        var por = {
 
 
             "vrijednost": 2,
@@ -49,11 +50,10 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         };
 
 
-
-        porukaFactory.insertPoruka(ocj)
+        porukaFactory.insertPoruka(por)
             .success(function (data) {
                 $scope.status = 'Inserted Poruka! Refreshing poruka list.';
-                $scope.poruke.push(ocj);
+                $scope.poruke.push(por);
                 console.log(data);
             }).
             error(function(error) {
@@ -61,7 +61,7 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
             });
         }
 
-    $scope.deletePoruka = function (id) {
+    function deletePoruka (id) {
         porukaFactory.deletePoruka(id)
         .success(function () {
             $scope.status = 'Deleted Poruka! Refreshing poruka list.';
@@ -79,16 +79,6 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         });
     };
 
-    $scope.getPorukeOrders = function (id) {
-        porukaFactory.getOrders(id)
-        .success(function (orders) {
-            $scope.status = 'Retrieved orders!';
-            $scope.orders = orders;
-        })
-        .error(function (error) {
-            $scope.status = 'Error retrieving poruke! ' + error.message;
-        });
-    };
 }]);
 
 
