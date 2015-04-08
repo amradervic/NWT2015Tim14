@@ -4,7 +4,24 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
     //$scope.status;
   //  $scope.ocjene='reii';
     //$scope.orders;
-  // getOcjena(3);
+   //getOcjene();
+   //getOcjena(2);
+
+/*
+            var ocj = {
+
+
+                "vrijednost": "4",
+                "Objekat_idObjekat": "1",
+                "Korisnici_idKorisnik":"KAKAKAKAK"
+            };
+            */
+
+            //insertOcjena(ocj);
+            //deleteOcjena(2);
+           // updateOcjena(ocj,1);
+
+
     function getOcjene() {
         ocjenaFactory.getOcjene()
             .success(function (_ocjene) {
@@ -17,6 +34,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
     function getOcjena(id) {
         ocjenaFactory.getOcjena(id)
             .success(function (_ocjene) {
+
                 $scope.ocjene = _ocjene;
             })
             .error(function (error) {
@@ -67,7 +85,8 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
             });
         }
 
-    $scope.deleteOcjena = function (id) {
+
+     function deleteOcjena (id) {
         ocjenaFactory.deleteOcjena(id)
         .success(function () {
             $scope.status = 'Deleted Ocjena! Refreshing ocjena list.';

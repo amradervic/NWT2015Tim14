@@ -42,9 +42,18 @@
 </ul>
           </div>
   </nav>
-   
+
+
+     <div ng-controller="ocjenaController">
+
+             Answer: {{ocjene}}
+
+     </div>
+
      <div id="main">
-  
+
+
+
     <!-- angular templating -->
 		<!-- this is where content will be injected -->
                 <div ng-view>
@@ -104,15 +113,7 @@ Full Name: {{firstName + " " + lastName }}
 
 
 
-<div ng-controller="ocjenaController">
-<form>
-    <input type="text" name="username2" id="username2" placeholder="Username" ng-model="unos" />
-   
-    <button type="submit" ng-click="insertPoruka();">Kreiraj objekat</button> {{unos}}
-    <br>
-    Answer: {{ocjene}}
-</form>
-</div>
+
 
 
 -->
