@@ -78,8 +78,18 @@ Full Name: {{firstName + " " + lastName }}
 <!--</div>-->
     
     
-  
 
+<div ng-controller="korisnikController">
+<form>
+    <input type="text" name="username1" id="username1" placeholder="Username" ng-model="unos" />
+   
+    <button type="submit" ng-click="insertKorisnik();">Kreiraj korisnika</button> {{unos}}
+    <br>
+    Answer: {{korisnici}}
+</form>
+</div>
+
+<!--
 <div ng-controller="ocjenaController">
 <form>
     <input type="text" name="username" id="username" placeholder="Username" ng-model="unos" />
@@ -90,25 +100,19 @@ Full Name: {{firstName + " " + lastName }}
 </form>
 </div>
 
-<div ng-controller="korisnikController">
-<form>
-    <input type="text" name="username1" id="username1" placeholder="Username" ng-model="unos1" />
-   
-    <button type="submit" ng-click="insertKorisnik();">Kreiraj korisnika</button> {{unos1}}
-    <br>
-    Answer: {{korisnici}}
-</form>
-</div>
+
 
 <div ng-controller="objekatController">
 <form>
-    <input type="text" name="username2" id="username2" placeholder="Username" ng-model="unos1" />
+    <input type="text" name="username2" id="username2" placeholder="Username" ng-model="unos" />
    
-    <button type="submit" ng-click="insertObjekat();">Kreiraj objekat</button> {{unos1}}
+    <button type="submit" ng-click="insertObjekat();">Kreiraj objekat</button> {{unos}}
     <br>
     Answer: {{objekti}}
 </form>
 </div>
+-->
+
 
 </body>
 

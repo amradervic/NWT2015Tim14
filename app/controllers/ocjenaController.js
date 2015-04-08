@@ -43,9 +43,9 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
         var ocj = {
 
 
-            "vrijednost": 2,
-            "Objekat_idObjekat": 3,
-            "Korisnici_idKorisnik":"blabla"
+            "vrijednost": "4",
+            "Objekat_idObjekat": "1",
+            "Korisnici_idKorisnik":"426b0556-dd7c-11e4-b520-00269e6cceac"
         };
 
 

@@ -1,14 +1,14 @@
 controllers.controller('korisnikController',['$scope', 'korisnikFactory', 
         function ($scope, korisnikFactory) {
 
-    $scope.status;
-    $scope.korisnici='';
-    $scope.orders;
+ //   $scope.status;
+ //   $scope.korisnici='';
+  //  $scope.orders;
    
 
-       
-        getKorisnici();
-//deleteKorisnik('163e981e-dace-11e4-a387-4c72b97adfe5');
+	insertKorisnik();
+	getKorisnici();
+	
     function getKorisnici() {
         korisnikFactory.getKorisnici()
             .success(function (_korisnici) {
@@ -40,15 +40,16 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
 
     function insertKorisnik(){
         //Fake customer data
-       
+       //nema veze sto je idKorisnika null jer nikad nece biti null upisano u bazu, nego ce se odmah uuid generisati i unijeti 
         var kor = {
-            korisnickoIme: 'Melika',
-            sifra: 'Melika',
-            email:'melika@gmail.com',
-            tip:'test',
-            aktivan: 1
-           
-        };
+			"idKorisnik": "null",
+			"korisnickoIme": "amradervic",
+			"sifra": "amrad",
+			"email": "amradervic@amra.com",
+			"tip": "obicni",
+			"aktivan": "1",
+			"banovan": "0" 
+		 };
         korisnikFactory.insertKorisnik(kor)
             .success(function (data) {
                 $scope.status = 'Inserted Korisnik! Refreshing korisnik list.';
@@ -58,7 +59,9 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
             error(function(error) {
                 $scope.status = 'Unable to insert korisnik: ' + error.message;
             });
-    };
+		}
+
+	
 
     $scope.deleteKorisnik = function (id) {
         korisnikFactory.deleteKorisnik(id)

@@ -1,11 +1,11 @@
 controllers.controller('objekatController',['$scope', 'objekatFactory', 
         function ($scope, objekatFactory) {
 
-    $scope.status;
-    $scope.objekti='reii';
-    $scope.orders;
+  //  $scope.status;
+  //  $scope.objekti='reii';
+   // $scope.orders;
    
-
+	insertObjekat();
     getObjekti();
 
 //dobavljanje svih objekata
@@ -41,14 +41,13 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
 
 //dodavanje objekta
     function insertObjekat(){
-        
+         
         var obj = {
-            naziv: "Objekat1",
-            adresa: "adresa",
-            grad:"sarajevo",
-            tip:"tip1",
-            opis: "opis"
-           
+			"naziv": "amrads",
+			"adresa": "amrads",
+			"grad": "amrads",
+			"tip": "amrads",
+			"opis": "amrads"
         };
         objekatFactory.insertObjekat(obj)
             .success(function (data) {
@@ -57,9 +56,9 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
                 console.log(data);
             }).
             error(function(error) {
-                $scope.status = 'Unable to insert korisnik: ' + error.message;
+                $scope.status = 'Unable to insert Objekat: ' + error.message;
             });
-    };
+		}
 
 //brisanje objekta
     $scope.deleteObjekat = function (id) {
