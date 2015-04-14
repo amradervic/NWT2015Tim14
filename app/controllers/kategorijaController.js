@@ -4,7 +4,7 @@ controllers.controller('kategorijaController',['$scope', 'kategorijaFactory',
         //$scope.status;
         //  $scope.kategorije='reii';
         //$scope.orders;
-        //getKategorije();
+       getKategorije();
         //getkategorija(2);
 
         /*

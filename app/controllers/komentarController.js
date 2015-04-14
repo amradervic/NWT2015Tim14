@@ -1,8 +1,8 @@
 controllers.controller('komentarController',['$scope', 'komentarFactory',
     function ($scope, komentarFactory) {
 
-        
-        //getKomentare();
+
+        getKomentare();
        // getKomentar(1);
 
 

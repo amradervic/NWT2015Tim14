@@ -32,6 +32,7 @@ class ApiController extends Controller
                                 break;
                         case 'komentari':
                                 $models = Komentar::model()->findAll();
+                                break;
                         case 'korisnici':
                                 $models = Korisnik::model()->findAll();
                                 break;

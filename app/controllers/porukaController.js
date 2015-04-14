@@ -4,6 +4,8 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
     //$scope.status;
   // $scope.poruke='reii';
     //$scope.orders;
+
+
    
 
     function getPoruke() {
