@@ -15,27 +15,22 @@ app.config(function($routeProvider, $httpProvider) {
 	$routeProvider
 
             // route for the home page
-            .when('/', {
-			templateUrl : 'views/test.html',
-			controller  : 'mainController'
-		})
+//            .when('/', {
+//			templateUrl : 'index.html',
+//			controller  : 'mainController'
+//		})
                 
-                 .when('/ocjena', {
-			templateUrl : 'index.html',
-			controller  : 'ocjenaController'
-		})
-
-
+               
             // route for the login page
             .when('/login', {
 			templateUrl : 'views/login.html',
-			controller  : 'mainController'
+			controller  : 'korisnikController'
 		})
 
             // route for the registration page
             .when('/registration', {
 			templateUrl : 'views/registration.html',
-			controller  : 'mainController'
+			controller  : 'korisnikController'
 		})
              .otherwise({ redirectTo: '/home' });
 

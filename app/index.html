@@ -9,11 +9,11 @@
 <script src="controllers/mainController.js"></script>
 <script src="controllers/loginController.js"></script> -->
 <script src="controllers/app.js"></script>
-<script src="services/ocjenaService.js"></script>
-<script src="controllers/ocjenaController.js"></script>
+<!--<script src="services/ocjenaService.js"></script>
+<script src="controllers/ocjenaController.js"></script>-->
 <script src="services/korisnikService.js"></script>
 <script src="controllers/korisnikController.js"></script>
-<script src="services/objekatService.js"></script>
+<!--<script src="services/objekatService.js"></script>
 <script src="controllers/objekatController.js"></script>
 <script src="services/logService.js"></script>
 <script src="controllers/logController.js"></script>
@@ -22,23 +22,46 @@
 <script src="services/kategorijaService.js"></script>
 <script src="controllers/kategorijaController.js"></script>
 <script src="services/komentarService.js"></script>
-<script src="controllers/komentarController.js"></script>
+<script src="controllers/komentarController.js"></script>-->
 
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
-<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>
+<!--<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>-->
 <link href="css/bootstrap.css" rel="stylesheet">
 
 </head>
 
 <body  ng-app="placestogoApp">
 
+ <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Places To-Go</a>
+      </div>
 
-     <div ng-controller="kategorijaController" >
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="#/"><i></i> Home</a></li>
+        <li><a href="#/login"><i></i> Login</a></li>
+        <li><a href="#/registration"><i></i> Registration</a></li>
+</ul>
+          </div>
+  </nav>
+   
+     <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+                <div ng-view>
+                    
+                </div>
+    
+  </div>
+<!--     <div ng-controller="kategorijaController" >
 
              Answer: {{kategorije}}
 
-     </div>
+     </div>-->
 
 
 </body>
