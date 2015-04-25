@@ -134,7 +134,7 @@ class ApiController extends Controller
                                 $model = new Komentar;                    
                                 break;
                         case 'korisnici':
-                                $model = new Korisnik;                    
+                                $model = new Korisnik();                    
                                 break;
                         case 'log':
                                 $model = new Log;                    
