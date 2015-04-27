@@ -81,8 +81,8 @@ class ApiController extends Controller
                 if(!isset($_GET['id']))
                         $this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
 $criteria = new CDbCriteria();
-$criteria->condition = 'email=:email';
-$criteria->params = array(':email'=>$_GET['id']); 
+$criteria->condition = 'korisnickoIme=:korisnickoIme';
+$criteria->params = array(':korisnickoIme'=>$_GET['id']); 
                 switch($_GET['model'])
                 {
                         // Find respective model    
