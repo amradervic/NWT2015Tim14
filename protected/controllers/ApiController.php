@@ -80,10 +80,14 @@ class ApiController extends Controller
                 // Check if id was submitted via GET
                 if(!isset($_GET['id']))
                         $this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
-         
+$criteria = new CDbCriteria();
+$criteria->condition = 'email=:email';
+$criteria->params = array(':email'=>$_GET['id']); 
                 switch($_GET['model'])
                 {
                         // Find respective model    
+
+
                         case 'kategorije':
                                 $model = Kategorija::model()->findByPk($_GET['id']);
                                 break;
@@ -91,7 +95,7 @@ class ApiController extends Controller
                                 $model = Komentar::model()->findByPk($_GET['id']);
                                 break;
                         case 'korisnici':
-                                $model = Korisnik::model()->findByPk($_GET['id']);
+                               	$model = Korisnik::model()->findByPk($_GET['id']);
                                 break;
                         case 'log':
                                 $model = Log::model()->findByPk($_GET['id']);
@@ -107,6 +111,9 @@ class ApiController extends Controller
                                 break;
                         case 'recenzije':
                                 $model = Recenzija::model()->findByPk($_GET['id']);
+                                break;
+                        case 'korisnik':
+                                $model = Korisnik::model()->find($criteria);
                                 break;
                         default:
                                 $this->_sendResponse(501, sprintf(

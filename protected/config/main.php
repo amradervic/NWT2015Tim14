@@ -67,6 +67,7 @@ return array(
                         // REST patterns
                         array('api/list', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
                         array('api/view', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'GET'),
+			array('api/view', 'pattern'=>'api/<model:\w+>/<email:[\w-]+>', 'verb'=>'GET'),
                         array('api/update', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'PUT'),  // Update
                         array('api/delete', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'DELETE'),
                         array('api/create', 'pattern'=>'api/<model:\w+>', 'verb'=>'POST'), // Create
