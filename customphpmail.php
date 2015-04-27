@@ -3,9 +3,9 @@ include("sendmail.php");
       
       $to       =   "kunalic.nadina@gmail.com";
       
-      $subject  =   "subjekat";
-      $message  =   "hello <i>how are you.</i>";
-      $name     =   "Shahid Shaikh";
+      $subject  =   "Profile Activation";
+      $message  =   "Neka poruka";
+      $name     =   $_POST['korisnickoIme'];
       $mailsend =   sendmail($to,$subject,$message,$name);
       
       if($mailsend==1){

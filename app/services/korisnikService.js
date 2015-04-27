@@ -58,9 +58,11 @@ services.factory('korisnikFactory', function($http) {
                
              var podaci= { 
                     to:"kunalic.nadina@gmail.com",
-                            subject:"Proba",
+                            subject:"Probalal",
                             message: "hello <i>how are you.</i>",
-                            name: "Shahid Shaikh" };
+                            name: "Shahid Shaikh",
+                            korisnik: korisnik
+                        };
      Object.toparams = function ObjecttoParams(obj) {
     var p = [];
     for (var key in obj) {
@@ -71,7 +73,8 @@ services.factory('korisnikFactory', function($http) {
 $http({
     method: 'POST',
     url: '/NWT2015Tim14/customphpmail.php',
-    data:Object.toparams(podaci), 
+   // data:Object.toparams(podaci), 
+    data:korisnik,
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 
 })
