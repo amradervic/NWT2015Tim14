@@ -41,8 +41,57 @@ services.factory('korisnikFactory', function($http) {
          //return $http.post(urlBase, korisnik)
         
            .success(function(){
-                            //$http.post('/mail', registerModel.email);
-                             alert("Korisnik je uspjesno registrovan!");
+            /*   $http({
+                   
+                type: "POST",
+                url: "/NWT2015Tim14/sendmail.php/sendmail",
+                data: { 
+                    to:"kunalic.nadina@gmail.com",
+                            subject:"Proba",
+                            message: "hello <i>how are you.</i>",
+                            name: "Shahid Shaikh" },
+                success: function(msg){ 
+                    alert('Success!');
+                     }
+               });
+             /*  */
+               
+             var podaci= { 
+                    to:"kunalic.nadina@gmail.com",
+                            subject:"Proba",
+                            message: "hello <i>how are you.</i>",
+                            name: "Shahid Shaikh" };
+     Object.toparams = function ObjecttoParams(obj) {
+    var p = [];
+    for (var key in obj) {
+        p.push(key + '=' + encodeURIComponent(obj[key]));
+    }
+    return p.join('&');
+};
+$http({
+    method: 'POST',
+    url: '/NWT2015Tim14/customphpmail.php',
+    data:Object.toparams(podaci), 
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
+})
+               
+               
+               
+               
+            /*   data={
+                            'to':"kunalic.nadina@gmail.com",
+                            'subject':"Probanova",
+                            'message': "hello <i>how are you.</i>",
+                            'name': "Shahid Shaikh"};
+                            //$mailsend =   sendmail($to,$subject,$message,$name);
+                           $http.post('/NWT2015Tim14/customphpmail.php',data);
+                      // $http.post('/NWT2015Tim14/sendmail.php/sendmail', data);
+                         */
+                      alert("Korisnik je dodan");
+                               
+                           
+                            
                             
                         })
                          .error(function(){

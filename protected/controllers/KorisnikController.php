@@ -1,5 +1,8 @@
 <?php
 
+require_once('class.phpmailer.php');
+
+
 class KorisnikController extends Controller
 {
 	/**
@@ -170,4 +173,7 @@ class KorisnikController extends Controller
 			Yii::app()->end();
 		}
 	}
+        
+      
+	
 }

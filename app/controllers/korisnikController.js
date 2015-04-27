@@ -19,7 +19,7 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
         
     };
 //	insertKorisnik();
-  
+ 
     function getKorisnici() {
         korisnikFactory.getKorisnici()
             .success(function (_korisnici) {
