@@ -66,11 +66,13 @@ return array(
                         'posts/<tag:.*?>'=>'post/index',
                         // REST patterns
                         array('api/list', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
-                        array('api/view', 'pattern'=>'api/<model:\w+>/<id:\d+>', 'verb'=>'GET'),
-                        array('api/update', 'pattern'=>'api/<model:\w+>/<id:\d+>', 'verb'=>'PUT'),  // Update
-                        array('api/delete', 'pattern'=>'api/<model:\w+>/<id:\d+>', 'verb'=>'DELETE'),
+                        array('api/view', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'GET'),
+                        array('api/update', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'PUT'),  // Update
+                        array('api/delete', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'DELETE'),
                         array('api/create', 'pattern'=>'api/<model:\w+>', 'verb'=>'POST'), // Create
                         '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+			'<controller:\w+>/<id:[\w-]+>' => '<controller>/view',
+			'<controller:\w+>/<action:\w+>/<id:[\w-]+>' => '<controller>/<action>',
         	),
         ),
 
