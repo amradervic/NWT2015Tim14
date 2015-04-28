@@ -3,6 +3,7 @@ services.factory('korisnikFactory', function($http) {
     var factory = {}; 
     var urlBase='/NWT2015Tim14/index.php/api/korisnici';
     var urlB = '/NWT2015Tim14/index.php/api/reset';
+    var urlActivate='/NWT2015Tim14/index.php/api/activate'
    factory.getKorisnici = function () {
         return $http.get(urlBase);
     };
@@ -38,6 +39,7 @@ services.factory('korisnikFactory', function($http) {
                             alert("Greška u procesiranju zahtjeva");
                         });
     }
+    
 /*
  * 
  * 
@@ -46,7 +48,7 @@ services.factory('korisnikFactory', function($http) {
     };
  */
 
-     factory.registerKorisnik = function (korisnik) {
+     factory.registerKorisnik = function (korisnik, email) {
         //return $http.post(urlBase, korisnik);
         
          return $http({
@@ -57,56 +59,21 @@ services.factory('korisnikFactory', function($http) {
          //return $http.post(urlBase, korisnik)
         
            .success(function(){
-            /*   $http({
-                   
-                type: "POST",
-                url: "/NWT2015Tim14/sendmail.php/sendmail",
-                data: { 
-                    to:"kunalic.nadina@gmail.com",
-                            subject:"Proba",
-                            message: "hello <i>how are you.</i>",
-                            name: "Shahid Shaikh" },
-                success: function(msg){ 
-                    alert('Success!');
-                     }
-               });
-             /*  */
+           
+               return $http({
+                            method : 'GET',
+                            url : urlActivate + '/' + email
+                            
+                        })
+              .success(function(){ 
+                  setTimeout(function(){ alert("Podaci za korisnika su uneseni. Uskoro cete dobiti aktivacijski email."); }, 3000);
+                 
+              })
+              .error(function(){
+                            alert("Greška u procesiranju zahtjeva");
+                        });
                
-             var podaci= { 
-                    to:"kunalic.nadina@gmail.com",
-                            subject:"Probalal",
-                            message: "hello <i>how are you.</i>",
-                            name: "Shahid Shaikh",
-                            korisnik: korisnik
-                        };
-     Object.toparams = function ObjecttoParams(obj) {
-    var p = [];
-    for (var key in obj) {
-        p.push(key + '=' + encodeURIComponent(obj[key]));
-    }
-    return p.join('&');
-};
-$http({
-    method: 'POST',
-    url: '/NWT2015Tim14/customphpmail.php',
-   // data:Object.toparams(podaci), 
-    data:korisnik,
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-
-})
-               
-               
-               
-               
-            /*   data={
-                            'to':"kunalic.nadina@gmail.com",
-                            'subject':"Probanova",
-                            'message': "hello <i>how are you.</i>",
-                            'name': "Shahid Shaikh"};
-                            //$mailsend =   sendmail($to,$subject,$message,$name);
-                           $http.post('/NWT2015Tim14/customphpmail.php',data);
-                      // $http.post('/NWT2015Tim14/sendmail.php/sendmail', data);
-                         */
+           
                       alert("Korisnik je dodan");
                                
                            

@@ -120,7 +120,7 @@ $scope.reset = {
 //	}
 
  $scope.actionRegisterUser=function(){
-		korisnikFactory.registerKorisnik($scope.korisnik);
+		korisnikFactory.registerKorisnik($scope.korisnik, $scope.korisnik.email);
 		//document.getElementById("errorBox").innerHTML="ime glasi"+username;
 	};
 

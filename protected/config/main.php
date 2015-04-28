@@ -64,6 +64,8 @@ return array(
                         'post/<id:\d+>/<title:.*?>'=>'post/view',
                         'posts/<tag:.*?>'=>'post/index',
                         // REST patterns
+                        array('api/checkforupdate', 'pattern'=>'api/checkforupdate/<idKorisnik:[\w-]+>', 'verb'=>'GET'),
+                        array('api/activate', 'pattern'=>'api/activate/<email:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
                         array('api/reset', 'pattern'=>'api/reset/<email:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
                         array('api/list', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
                         array('api/view', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'GET'),

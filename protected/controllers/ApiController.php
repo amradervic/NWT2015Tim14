@@ -211,6 +211,34 @@ $criteria->params = array(':korisnickoIme'=>$_GET['id']);
                 }
     }
 
+    
+    
+  public function actionActivate()
+{
+$criteria = new CDbCriteria();
+$criteria->condition = 'email=:email';
+$criteria->params = array(':email'=>$_GET['email']); 
+ $user = Korisnik::model()->find($criteria);    
+    
+        
+        $from = 'Activation email <admin@yoursite.com>';
+        $to = $_GET['email'];
+        $name = $user->korisnickoIme;
+        $subject = 'Activation email';
+        $activation_url=Yii::app()->createAbsoluteUrl('api/checkforupdate', array('idKorisnik' => $user->idKorisnik));
+       
+        $message = Yii::t('user', 'Dear').' '.$user->korisnickoIme.',
+'.Yii::t('user', 'A request has been made to activate your account.').'
+'.Yii::t('user', 'Your activation link is').': '.$activation_url.'
+'; // Our message above
+
+        $headers = 'From: '.$from."\r\n"; // Set from headers
+        $this->sendmail($to, $subject, $message, $headers); // Send our email
+
+}  
+    
+    
+    
 public function actionReset()
 {
 $criteria = new CDbCriteria();
@@ -269,6 +297,34 @@ $criteria->params = array(':email'=>$_GET['email']);
 
     $this->layout = '//layouts/main';
     $this->render('resetpassword');*/
+}
+
+public function actionCheckforupdate(){
+    
+ $id = Yii::app()->request->getQuery('idKorisnik');
+            
+                // collect user input data
+                if(isset($id))
+                {
+                  
+              $model = Korisnik::model()->find('idKorisnik=:idKorisnik', array(':idKorisnik'=>$id));   
+             
+            $criteria = new CDbCriteria();
+            $criteria->condition = 'idKorisnik=:idKorisnik';
+            $criteria->params = array(':idKorisnik'=>$id); 
+             $model = Korisnik::model()->find($criteria);   
+ 
+              if($id== $model->idKorisnik){            
+                $model->aktivan=1;
+                $model->update();
+                echo "<script type='text/javascript'>alert('Your account has successfully been activated!')</script>";
+                $this->redirect('http://localhost/NWT2015Tim14/app/index.html#/login');
+              }
+              
+                        
+                }
+      
+                
 }
 public function actionUpdate()
 {
