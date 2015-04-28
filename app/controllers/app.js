@@ -32,6 +32,11 @@ app.config(function($routeProvider, $httpProvider) {
 			templateUrl : 'views/registration.html',
 			controller  : 'korisnikController'
 		})
+            // route for the reset page
+            .when('/reset', {
+			templateUrl : 'views/reset.html',
+			controller  : 'korisnikController'
+		})
              .otherwise({ redirectTo: '/home' });
 
 	});
