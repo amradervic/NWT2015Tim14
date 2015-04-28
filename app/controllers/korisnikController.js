@@ -6,7 +6,7 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
  //   $scope.status;
  //   $scope.korisnici='';
   //  $scope.orders;
-   
+ 
  $scope.korisnik = {
      idKorisnik: "null",
         korisnickoIme : "",
@@ -18,6 +18,11 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
         
         
     };
+
+  /*
+$scope.reset = {
+    email: ""
+} */
 //	insertKorisnik();
  
     function getKorisnici() {
@@ -138,6 +143,13 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
             $scope.status = 'Unable to delete korisnici: ' + error.message;
         });
     };
+
+    $scope.actionResetPassword=function(){
+    //    var email = document.form.reset.email.value;
+        korisnikFactory.resetPassword($scope.email);
+    };
+
+  
 /*
     $scope.getKorisniciOrders = function (id) {
         korisnikFactory.getOrders(id)

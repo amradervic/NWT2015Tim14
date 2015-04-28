@@ -57,7 +57,6 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
-		
 // url manager za parsiranje urlova
         'urlManager'=>array(
         	'urlFormat'=>'path',
@@ -65,9 +64,12 @@ return array(
                         'post/<id:\d+>/<title:.*?>'=>'post/view',
                         'posts/<tag:.*?>'=>'post/index',
                         // REST patterns
+                        array('api/reset', 'pattern'=>'api/reset/<email:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
                         array('api/list', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
                         array('api/view', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'GET'),
-			array('api/view', 'pattern'=>'api/<model:\w+>/<korisnickoIme:[\w-]+>', 'verb'=>'GET'),
+						array('api/view', 'pattern'=>'api/<model:\w+>/<korisnickoIme:[\w-]+>', 'verb'=>'GET'),
+						array('api/view', 'pattern'=>'api/<model:\w+>/<id:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
+						//array('api/reset', 'pattern'=>'api/<model:\w+>/<email:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
                         array('api/update', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'PUT'),  // Update
                         array('api/delete', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'DELETE'),
                         array('api/create', 'pattern'=>'api/<model:\w+>', 'verb'=>'POST'), // Create

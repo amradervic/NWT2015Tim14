@@ -2,13 +2,14 @@ services.factory('korisnikFactory', function($http) {
      
     var factory = {}; 
     var urlBase='/NWT2015Tim14/index.php/api/korisnici';
- 
+    var urlB = '/NWT2015Tim14/index.php/api/reset';
    factory.getKorisnici = function () {
         return $http.get(urlBase);
     };
     
     factory.getKorisnik = function (id) {
-        return $http.get(urlBase + '/' + id);
+       return $http.get(urlBase + '/' + id);
+        
     };
 
     factory.insertKorisnik = function (korisnik) {
@@ -22,6 +23,21 @@ services.factory('korisnikFactory', function($http) {
     factory.deleteKorisnik = function (id) {
         return $http.delete(urlBase + '/' + id);
     };
+    factory.resetPassword = function (email) {
+   //   return $http.get(urlB + '/' + email);
+   // return $http.get(urlB);
+            return $http({
+                            method : 'GET',
+                            url : urlB + '/' + email
+                            
+                        })
+              .success(function(){ 
+                  alert("Sifra je resetovana");
+              })
+              .error(function(){
+                            alert("Greška u procesiranju zahtjeva");
+                        });
+    }
 /*
  * 
  * 

@@ -1,5 +1,5 @@
 <?php
- 
+
 class ApiController extends Controller
 {
     // Members
@@ -80,6 +80,11 @@ class ApiController extends Controller
                 // Check if id was submitted via GET
                 if(!isset($_GET['id']))
                         $this->_sendResponse(500, 'Error: Parameter <b>id</b> is missing' );
+/*
+$criteria = new CDbCriteria();
+$criteria->condition = 'korisnickoIme=:korisnickoIme';
+$criteria->params = array(':korisnickoIme'=>$_GET['id']); 
+*/
 $criteria = new CDbCriteria();
 $criteria->condition = 'korisnickoIme=:korisnickoIme';
 $criteria->params = array(':korisnickoIme'=>$_GET['id']); 
@@ -205,6 +210,66 @@ $criteria->params = array(':korisnickoIme'=>$_GET['id']);
                         $this->_sendResponse(500, $msg );
                 }
     }
+
+public function actionReset()
+{
+$criteria = new CDbCriteria();
+$criteria->condition = 'email=:email';
+$criteria->params = array(':email'=>$_GET['email']); 
+ $user = Korisnik::model()->find($criteria);    
+    /*            switch($_GET['model'])
+                {
+                        // Get an instance of the respective model
+                        case 'password':
+                                      $user = Korisnik::model()->find($criteria);             
+                                break;
+                        case 'log':                 
+                                break;
+
+                        default:
+                                $this->_sendResponse(501,
+                                        sprintf('Mode <b>reset</b> is not implemented for model <b>%s</b>',
+                                        $_GET['model']) );
+                                        Yii::app()->end();
+                }
+
+     $user = User::model()->findAll('email=:email',
+                array('email'=>$email);
+
+    if(count($user) != 1) {
+        Yii::app()->user->setFlash('user',
+            Yii::t('messages', 'Unable to find user.'));
+        );
+        $this->refresh();
+    }
+    else {
+        $user = $user[0];*/
+        $user->sifra = $this->randomPassword();
+        $user->update();
+    // Send new password to email
+        $from = 'Password Reset <admin@yoursite.com>';
+        $to = 'aimamovic3@gmail.com';
+        $name = $user->korisnickoIme;
+        $subject = 'Reset Password';
+
+        $message = Yii::t('user', 'Dear').' '.$user->korisnickoIme.',
+'.Yii::t('user', 'A request has been made to reset your password.').'
+'.Yii::t('user', 'Your new password is').': '.$user->sifra.'
+'; // Our message above
+
+        $headers = 'From: '.$from."\r\n"; // Set from headers
+        $this->sendmail($to, $subject, $message, $headers); // Send our email
+/*
+    
+        Yii::app()->user->setFlash('user',
+            Yii::t('notices', 'A new password has been sent to your email address.')
+        );
+        $this->refresh();
+    }
+
+    $this->layout = '//layouts/main';
+    $this->render('resetpassword');*/
+}
 public function actionUpdate()
 {
     // Parse the PUT parameters. This didn't work: parse_str(file_get_contents('php://input'), $put_vars);
@@ -387,7 +452,49 @@ private function _sendResponse($status = 200, $body = '', $content_type = 'text/
     }
     Yii::app()->end();
 }
- 
+
+private function randomPassword() {
+    $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+}
+
+  function sendmail($to,$subject,$message,$name)
+    {
+      require_once('class.phpmailer.php');
+require_once('class.smtp.php');
+                   
+                  $mail             = new PHPMailer();
+                  $body             = $message;
+                  $mail->IsSMTP();
+                 // $mail->SMTPDebug = 3; 
+                  $mail->SMTPAuth   = true;
+                 $mail->Host       = "smtp.gmail.com";
+                 // $mail->Host = "ssl://smtp.gmail.com";
+                  $mail->Port       = 587;
+                  $mail->Username   = "placestogonwt@gmail.com";
+                  $mail->Password   = "passwordtim14";
+                  $mail->SMTPSecure = 'tls';
+                  $mail->SetFrom('placestogonwt@gmail.com', 'PlacesTOgo');
+                  $mail->AddReplyTo("placestogonwt@gmail.com","PlacesTOgo");
+                  $mail->Subject    = $subject;
+                  $mail->AltBody    = "Any message.";
+                  $mail->MsgHTML($body);
+                  $address = $to;
+                  $mail->AddAddress($address, $name);
+                  if(!$mail->Send()) {
+                     
+                      return 0;
+                  } else {
+                        return 1;
+                 }
+    }
+
 private function _getStatusCodeMessage($status)
 {
     // these could be stored in a .ini file and loaded
