@@ -273,10 +273,10 @@ $criteria->params = array(':email'=>$_GET['email']);
     else {
         $user = $user[0];*/
         $user->sifra = $this->randomPassword();
-        $user->update();
+        
     // Send new password to email
         $from = 'Password Reset <admin@yoursite.com>';
-        $to = 'aimamovic3@gmail.com';
+        $to = $_GET['email'];
         $name = $user->korisnickoIme;
         $subject = 'Reset Password';
 
@@ -287,6 +287,8 @@ $criteria->params = array(':email'=>$_GET['email']);
 
         $headers = 'From: '.$from."\r\n"; // Set from headers
         $this->sendmail($to, $subject, $message, $headers); // Send our email
+        $user->sifra=md5($user->sifra);
+        $user->update();
 /*
     
         Yii::app()->user->setFlash('user',
@@ -375,8 +377,14 @@ public function actionUpdate()
     // Try to assign PUT parameters to attributes
     foreach($put_vars as $var=>$value) {
         // Does model have this attribute? If not, raise an error
-        if($model->hasAttribute($var))
-            $model->$var = $value;
+        if($model->hasAttribute($var)) {
+
+           if($var=='sifra')
+            $model->$var=md5($value);
+        else {
+            $model->$var = $value; 
+        }
+    }
         else {
             $this->_sendResponse(500,
                 sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>',
