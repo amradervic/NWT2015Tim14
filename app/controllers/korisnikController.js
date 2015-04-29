@@ -24,7 +24,8 @@ $scope.reset = {
     email: ""
 } */
 //	insertKorisnik();
- 
+ //getKorisnici();
+
     function getKorisnici() {
         korisnikFactory.getKorisnici()
             .success(function (_korisnici) {
