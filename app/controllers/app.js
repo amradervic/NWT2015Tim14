@@ -1,14 +1,15 @@
 "use strict";
 var services = angular.module('services', ['ngResource']);
 var controllers = angular.module('controllers', ['ngResource']);
+var directive= angular.module('directive', ['ngResource']);
 
 var app, deps;
 
   deps = ['treeGrid','xtForm',
           'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
-          'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser'/*,'directive'*/];
+          'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar'];
 
-app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers']);
+app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive']);
 
 // konfiguracija ruta
 app.config(function($routeProvider, $httpProvider) {
@@ -37,6 +38,12 @@ app.config(function($routeProvider, $httpProvider) {
 			templateUrl : 'views/reset.html',
 			controller  : 'korisnikController'
 		})
+                
+                .when('/home', {
+			templateUrl : 'views/home.html',
+			controller  : 'objekatController'
+		})
+                
              .otherwise({ redirectTo: '/home' });
 
 	});

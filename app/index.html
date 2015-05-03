@@ -4,6 +4,7 @@
 <script src="js/angular-route.js"></script>
 <script src="js/angular-resource.js"></script>
 <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
+<script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
 <!--<script src="controllers/personController.js"></script>-->
 <!--<script src="controllers/korisnikController.js"></script>
 <script src="controllers/mainController.js"></script>
@@ -13,8 +14,9 @@
 <script src="controllers/ocjenaController.js"></script>-->
 <script src="services/korisnikService.js"></script>
 <script src="controllers/korisnikController.js"></script>
-<!--<script src="services/objekatService.js"></script>
+<script src="services/objekatService.js"></script>
 <script src="controllers/objekatController.js"></script>
+<!--
 <script src="services/logService.js"></script>
 <script src="controllers/logController.js"></script>
 <script src="services/porukaService.js"></script>
@@ -28,7 +30,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
 <!--<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>-->
 <link href="css/bootstrap.css" rel="stylesheet">
-
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!--<link href="assets/32979dd6/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">-->
+<script src="directives/listOfObjectsDirective.js"></script>
 </head>
 
 <body  ng-app="placestogoApp">
@@ -41,7 +45,7 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-        <li><a href="#/"><i></i> Home</a></li>
+        <li><a href="#/home"><i></i> Home</a></li>
         <li><a href="#/login"><i></i> Login</a></li>
         <li><a href="#/registration"><i></i> Registration</a></li>
 	<li><a href="#/reset"><i></i> Reset password</a></li>

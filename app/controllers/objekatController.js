@@ -6,7 +6,7 @@ controllers.controller('objekatController',['$scope', 'objekatFactory',
    // $scope.orders;
    
 //	insertObjekat();
-   // getObjekti();
+  getObjekti();
 //
 //dobavljanje svih objekata
     function getObjekti() {
