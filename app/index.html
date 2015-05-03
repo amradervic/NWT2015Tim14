@@ -8,9 +8,9 @@
 <!--<script src="controllers/korisnikController.js"></script>
 <script src="controllers/mainController.js"></script>
 <script src="controllers/loginController.js"></script> -->
-
-<script src="services/ocjenaService.js"></script>
-<script src="controllers/ocjenaController.js"></script>
+<script src="controllers/app.js"></script>
+<!--<script src="services/ocjenaService.js"></script>
+<script src="controllers/ocjenaController.js"></script>-->
 <script src="services/korisnikService.js"></script>
 <script src="controllers/korisnikController.js"></script>
 <!--<script src="services/objekatService.js"></script>
@@ -24,19 +24,9 @@
 <script src="services/komentarService.js"></script>
 <script src="controllers/komentarController.js"></script>-->
 
-    <script src="controllers/app.js"></script>
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//code.angularjs.org/1.2.20/angular.js"></script>
-    <script src="//code.angularjs.org/1.2.20/angular-route.js"></script>
-    <script src="//code.angularjs.org/1.2.13/angular-cookies.js"></script>
-    <script src="modules/authentication/services.js"></script>
-    <script src="modules/authentication/controllers.js"></script>
-    <script src="modules/home/controllers.js"></script>
-
-
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
-
+<!--<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>-->
 <link href="css/bootstrap.css" rel="stylesheet">
 
 </head>
@@ -54,40 +44,25 @@
         <li><a href="#/"><i></i> Home</a></li>
         <li><a href="#/login"><i></i> Login</a></li>
         <li><a href="#/registration"><i></i> Registration</a></li>
-	    <li><a href="#/reset"><i></i> Reset password</a></li>
-          <li><a href="#/profil"><i></i> Profil</a></li>
-
-      </ul>
-    </div>
-
+	<li><a href="#/reset"><i></i> Reset password</a></li>
+</ul>
+          </div>
   </nav>
    
      <div id="main">
   
-
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
                 <div ng-view>
                     
                 </div>
     
-     </div>
+  </div>
+<!--     <div ng-controller="kategorijaController" >
 
+             Answer: {{kategorije}}
 
-
-
-
-
-
-
-
-
- <!--
-     <div ng-controller="korisnikController" >
-
-             Answer: {{korisnici}}
-
-     </div>
-
-     -->
+     </div>-->
 
 
 </body>
