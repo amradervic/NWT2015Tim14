@@ -1,7 +1,8 @@
-directive.directive('ngListofobjects',['$scope', 'objekatController', function($scope, objekatController){
+directive.directive('ngListofobjects',[ function(){
     
     return{
         
-        template: '<div>Ovo je direktiva</div>'
+        template: '<h2>{{objekt.naziv}}</h2><h5>{{objekt.adresa}}</h5><p class="list-group-item-text">{{objekt.opis}}</p>'
     }
 }])
+
