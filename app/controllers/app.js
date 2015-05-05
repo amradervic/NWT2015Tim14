@@ -9,10 +9,10 @@ var app, deps;
           'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
           'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar'];
 
-app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive']);
+app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive', 'pascalprecht.translate']);
 
 // konfiguracija ruta
-app.config(function($routeProvider, $httpProvider) {
+app.config(function($routeProvider, $httpProvider, $translateProvider) {
 	$routeProvider
 
             // route for the home page
@@ -46,8 +46,49 @@ app.config(function($routeProvider, $httpProvider) {
                 
              .otherwise({ redirectTo: '/home' });
 
+ /* $translateProvider.translations('en', {
+    HEADLINE: 'Hello there, This is my awesome app!',
+    INTRO_TEXT: 'And it has i18n support!',
+    BUTTON_TEXT_EN: 'english',
+    BUTTON_TEXT_DE: 'german'
+  })
+  .translations('de', {
+    HEADLINE: 'Hey, das ist meine großartige App!',
+    INTRO_TEXT: 'Und sie untersützt mehrere Sprachen!'
+    BUTTON_TEXT_EN: 'englisch',
+    BUTTON_TEXT_DE: 'deutsch'
+  });
+                $translateProvider.preferredLanguage('en');*/
+
 	});
-        
+    app.config(function($translateProvider) {
+  $translateProvider.translations('en', {
+    HEADLINE: 'Hello there, This is my awesome app!',
+    INTRO_TEXT: 'And it has i18n support!',
+       BUTTON_TEXT_EN: 'english',
+    BUTTON_TEXT_DE: 'bosnian',
+    USERNAME: 'Username',
+    PASSWORD: 'Password',
+    LOGIN: 'Login',
+    L1: 'Please fill out the following form with your login credentials:',
+    L2: 'Fields with * are required.',
+    FP: 'Forgot Password?'
+
+  })
+  .translations('bs', {
+    HEADLINE: 'Hey, das ist meine großartige App!',
+    INTRO_TEXT: 'Und sie untersützt mehrere Sprachen!',
+     BUTTON_TEXT_EN: 'engleski',
+    BUTTON_TEXT_DE: 'bosanski',  
+    USERNAME: 'Korisnicko ime',
+    PASSWORD: 'Sifra',
+    LOGIN: 'Prijava',
+    L1: 'Molimo popunite sljedecu formu Vasim podacima za prijavu:',
+    L2: 'Polja oznacena * su obavezna.',
+    FP: 'Zaboravili ste sifru?'
+  });
+  $translateProvider.preferredLanguage('en');
+});
         //dio koji sluzi da user i dalje ostane logovan na stranici i prilikom ucitavanja drugih stranica
        /* .run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
