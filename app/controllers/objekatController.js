@@ -1,22 +1,70 @@
-controllers.controller('objekatController',['$scope', 'objekatFactory', 
-        function ($scope, objekatFactory) {
+controllers.controller('objekatController',['$scope', 'objekatFactory', 'ocjenaFactory',
+        function ($scope, objekatFactory, ocjenaFactory) {
 
-  //  $scope.status;
-  //  $scope.objekti='reii';
-   // $scope.orders;
-   
-//	insertObjekat();
+
+
   getObjekti();
 //
 //dobavljanje svih objekata
+function getOcjene(){
+    ocjenaFactory.getOcjene()
+            .success(function (_ocjene) {
+                $scope.ocjene = _ocjene;
+                var zbir=parseInt("0");
+                var ukupno=0;
+                for (var i = 0; i < $scope.ocjene.length; i++) {
+                var ocj = $scope.ocjene[i];
+                if(ocj.Objekat_idObjekat==1){
+                zbir=zbir+parseInt(ocj.vrijednost);
+                ukupno ++;
+            }
+            }
+            var prosjecna=zbir/ukupno;
+            $scope.prosjek=zbir/ukupno;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load ocjene data: ' + error.message;
+            });
+    
+   
+         
+}
+
     function getObjekti() {
+        getOcjene();
         objekatFactory.getObjekti()
             .success(function (_objekti) {
                 $scope.objekti = _objekti;
-            })
+                
+              ocjenaFactory.getOcjene()
+            .success(function (_ocjene) {
+                $scope.ocjene = _ocjene;
+                for (var i = 0; i < $scope.objekti.length; i++) {
+                var zbir=parseInt("0");
+                var ukupno=0;
+                for (var j = 0; j < $scope.ocjene.length; j++) {
+                var ocj = $scope.ocjene[j];
+                var obj = $scope.objekti[i];
+                if(parseInt(ocj.Objekat_idObjekat)==parseInt(obj.idObjekat)){
+                zbir=zbir+parseInt(ocj.vrijednost);
+                ukupno ++;
+            }
+            }
+            var prosjecna=zbir/ukupno;
+            $scope.objekti[i].prosjek=zbir/ukupno;
+            $scope.objekti[i].totalReviews = new Array(zbir/ukupno);
+            }})
+            .error(function (error) {
+                $scope.status = 'Unable to load ocjene data: ' + error.message;
+            });
+               
+                })
             .error(function (error) {
                 $scope.status = 'Unable to load objekti data: ' + error.message;
             });
+            
+           
+            
     }
 // dobavljanje objekta
     function getObjekat(id) {

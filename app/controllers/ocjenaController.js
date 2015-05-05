@@ -1,5 +1,9 @@
 controllers.controller('ocjenaController',['$scope', 'ocjenaFactory', 
         function ($scope, ocjenaFactory) {
+           $scope.$on('myCustomEvent', function (event, data) {
+  console.log(data); // 'Data to send'
+  $scope.status="blaa";
+});
 
     //$scope.status;
   //  $scope.ocjene='reii';
@@ -21,7 +25,7 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
             //deleteOcjena(2);
            // updateOcjena(ocj,1);
 
-
+           getProsjecnaocjena(1);
     function getOcjene() {
         ocjenaFactory.getOcjene()
             .success(function (_ocjene) {
@@ -31,6 +35,35 @@ controllers.controller('ocjenaController',['$scope', 'ocjenaFactory',
                 $scope.status = 'Unable to load ocjene data: ' + error.message;
             });
     }
+    
+    function getProsjecnaocjena(id_objekta){
+        ocjenaFactory.getOcjene()
+            .success(function (_ocjene) {
+                $scope.ocjene = _ocjene;
+                var zbir=parseInt("0");
+                var ukupno=0;
+                for (var i = 0; i < $scope.ocjene.length; i++) {
+                var ocj = $scope.ocjene[i];
+                if(ocj.Objekat_idObjekat==id_objekta){
+                zbir=zbir+parseInt(ocj.vrijednost);
+                ukupno ++;
+            }
+            }
+            var prosjecna=zbir/ukupno;
+            $scope.prosjek=zbir/ukupno;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load ocjene data: ' + error.message;
+            });
+       /* var zbir=0;
+         for (var i = 1; i <3; i++) {
+                 zbir = zbir + $scope.ocjene[i].vrijednost;
+                }
+                var prosjek=zbir/2;
+                $scope.prosjek=prosjek;
+          */ }
+        
+    
     function getOcjena(id) {
         ocjenaFactory.getOcjena(id)
             .success(function (_ocjene) {

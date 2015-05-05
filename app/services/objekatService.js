@@ -2,7 +2,12 @@ services.factory('objekatFactory', function($http) {
      
     var factory = {}; 
     var urlBase='/NWT2015Tim14/index.php/api/objekti';
+   var urlBaseOcjene='/NWT2015Tim14/index.php/api/ocjene';
  
+   factory.getOcjene = function () {
+        return $http.get(urlBaseOcjene);
+    };
+    
    factory.getObjekti = function () {
         return $http.get(urlBase);
     };
