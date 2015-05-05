@@ -97,10 +97,12 @@ function getOcjene(){
           });
     };
 
-//dodavanje objekta
-    function insertObjekat(obj){
-         /*
-        var obj = {
+    //dodavanje objekta
+    //function insertObjekat(){
+	$scope.insertObjekat=function(){
+			console.log('doslo do prve');
+			 /*
+			var obj = {
 			"naziv": "amrads",
 			"adresa": "amrads",
 			"grad": "amrads",
@@ -108,16 +110,16 @@ function getOcjene(){
 			"opis": "amrads"
         };
         */
-        objekatFactory.insertObjekat(obj)
+        objekatFactory.insertObjekat($scope.objekt)
             .success(function (data) {
                 $scope.status = 'Inserted Objekat! Refreshing objekat list.';
-                $scope.objekti.push(obj);
+                $scope.objekti.push($scope.objekt);
                 console.log(data);
             }).
             error(function(error) {
                 $scope.status = 'Unable to insert Objekat: ' + error.message;
             });
-		}
+		};
 
 //brisanje objekta
     function deleteObjekat(id) {

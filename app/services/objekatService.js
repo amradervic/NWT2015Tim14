@@ -17,7 +17,19 @@ services.factory('objekatFactory', function($http) {
     };
 
     factory.insertObjekat = function (objekat) {
-        return $http.post(urlBase, objekat);
+        //return $http.post(urlBase, objekat);
+		return $http({
+                            method : 'POST',
+                            url : urlBase,
+                            data : objekat
+                        })
+           .success(function(){
+                             alert("Objekat je uspjesno dodan!");
+                            
+                        })
+                         .error(function(){
+                            alert("Greška u procesiranju zahtjeva");
+                        });
     };
 
     factory.updateObjekat = function (objekat, id) {

@@ -152,7 +152,7 @@ $criteria->params = array(':korisnickoIme'=>$_GET['id']);
                                 $model = new Log;                    
                                 break;
                         case 'objekti':
-                                $model = new Objekat;                    
+                                $model = new Objekat();                    
                                 break;
                         case 'ocjene':
                                 $model = new Ocjena;                    
