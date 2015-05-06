@@ -1,5 +1,5 @@
-controllers.controller('komentarController',['$scope', 'komentarFactory',
-    function ($scope, komentarFactory) {
+controllers.controller('komentarController',['$scope', 'komentarFactory','korisnikFactory',
+    function ($scope, komentarFactory,korisnikFactory) {
 
 
         getKomentare();
@@ -20,12 +20,57 @@ controllers.controller('komentarController',['$scope', 'komentarFactory',
         //deleteKomentar(2);
         // updateKomentar(kom,1);
 
+        function getKomentareImena(id)
+        {
+            korisnikFactory.getKorisnik(id)
+                .success( function (_korisnik) {
+                    $scope.korisnik=_korisnik;
+
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to load korisnici data: ' + error.message;
+                });
+            return _korisnik.korisnickoIme;
+        }
+
 
         function getKomentare() {
             komentarFactory.getKomentare()
                 .success(function (_komentare) {
                     $scope.komentare = _komentare;
+
+                    korisnikFactory.getKorisnici()
+                        .success( function (_korisnici) {
+                            $scope.korisnici=_korisnici;
+
+
+                            for(var i=0; $scope.komentare.length; i++)
+                            {
+
+                                for (var j = 0; j < $scope.korisnici.length; j++)
+                                {
+                                    var kor= $scope.korisnici[j];
+                                    var kom= $scope.komentare[i];
+                                    if(parseInt(kom.Korisnici_idKorisnik)==parseInt(kor.idKorisnik))
+                                    {
+                                        $scope.komentare[i].ime=kor.korisnickoIme;
+                                    }
+                                }
+
+
+
+                            }
+
+                        })
+
+                        .error(function (error) {
+                            $scope.status = 'Unable to load komentare data: ' + error.message;
+                        });
+
+
                 })
+
+
                 .error(function (error) {
                     $scope.status = 'Unable to load komentare data: ' + error.message;
                 });

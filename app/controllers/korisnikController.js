@@ -6,7 +6,9 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
  //   $scope.status;
  //   $scope.korisnici='';
   //  $scope.orders;
- 
+
+
+            /*
  $scope.korisnik = {
      idKorisnik: "null",
         korisnickoIme : "",
@@ -18,12 +20,13 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
         
         
     };
-
+    */
   /*
 $scope.reset = {
     email: ""
 } */
 //	insertKorisnik();
+ getKorisnici();
  
     function getKorisnici() {
         korisnikFactory.getKorisnici()
