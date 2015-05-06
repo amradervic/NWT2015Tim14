@@ -49,8 +49,10 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
             controller  : 'komentarController'
         })
 
-
-                
+                .when('/search', {
+      templateUrl : 'views/search.html',
+      controller  : 'objekatController'
+             })   
              .otherwise({ redirectTo: '/home' });
 
  /* $translateProvider.translations('en', {
