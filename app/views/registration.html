@@ -1,15 +1,17 @@
+  <div ng-Prevod-en-bs></div>
+
 <div class="col-md-6" ng-controller="korisnikController">
-     <h3>Registration</h3>
+     <h3 translate="REGISTRATION">Registration</h3>
      <br>
-     <p>Please fill out the following form:</p>
-     <p>Fields with * are required.</p>
+     <p translate="POPUNI">Please fill out the following form:</p>
+     <p translate="L2">Fields with * are required.</p>
      <br>
 <!--     <div ng-show="error" class="alert alert-danger" role="alert">{{error}}</div> -->
 
 <form ng-submit="actionRegisterUser()" role="form" >
 <div id="errorBox"></div>
 <div class="form-group">
-        <label for="username">Username*</label>
+        <label for="username" translate="USERNAME">Username*</label>
         <i class="fa fa-key"></i>
         <input type="text" name="username" id="username" class="form-control" ng-model="korisnik.korisnickoIme" required size="10"/>
         <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
@@ -21,18 +23,18 @@
         <span ng-show="form.email.$dirty && form.password.$error.required" class="help-block">Email is required</span>
     </div>   
     <div class="form-group">
-        <label for="password">Password*</label>
+        <label for="password" translate="PASSWORD">Password*</label>
         <i class="fa fa-lock"></i>
         <input type="password" name="password" id="password" class="form-control" ng-model="korisnik.sifra" required size="10"/>
         <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
     </div>
 	<div class ="form-group">
-		<label for="message">Enter the code here :</label>
+		<label for="message" translate="ENTERCODE">Enter the code here :</label>
 		<input id="5_letters_code" name="5_letters_code" type="text" required size="5"/>
 		<img src="captcha.php" />
 	</div>
     <div class="form-actions">
-        <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Register</button> 
+        <button type="submit" translate="REGISTER" ng-disabled="form.$invalid || dataLoading" class="btn btn-danger">Register</button> 
         <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
     </div>
  </form>

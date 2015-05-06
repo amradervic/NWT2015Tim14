@@ -79,7 +79,13 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
     LOGIN: 'Login',
     L1: 'Please fill out the following form with your login credentials:',
     L2: 'Fields with * are required.',
-    FP: 'Forgot Password?'
+    FP: 'Forgot Password?',
+    REGISTRATION: 'Registration',
+    POPUNI: 'Please fill out the following form:',
+    REGISTER: 'Register',
+    ENTERCODE: 'Enter the code here:',
+    RP: 'Reset Password',
+    RESET: 'Reset'
 
   })
   .translations('bs', {
@@ -92,7 +98,13 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
     LOGIN: 'Prijava',
     L1: 'Molimo popunite sljedecu formu Vasim podacima za prijavu:',
     L2: 'Polja oznacena * su obavezna.',
-    FP: 'Zaboravili ste sifru?'
+    FP: 'Zaboravili ste sifru?',
+    REGISTRATION: 'Registracija',
+    POPUNI: 'Molimo popunite sljedecu formu:',
+    REGISTER: 'Registruj se',
+    ENTERCODE: 'Unesi kod ovdje:',
+    RP: 'Resetovanje sifre',
+    RESET: 'Resetuj'
   });
   $translateProvider.preferredLanguage('en');
 });
