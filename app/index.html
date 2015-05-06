@@ -23,10 +23,14 @@
 <script src="controllers/porukaController.js"></script>
 <script src="services/kategorijaService.js"></script>
 <script src="controllers/kategorijaController.js"></script>
-<script src="services/komentarService.js"></script>
-<script src="controllers/komentarController.js"></script>-->
+
+-->
 <script src="js/angular-translate.js"></script>
 <script src="controllers/TranslateController.js"></script>
+
+    <script src="services/komentarService.js"></script>
+    <script src="controllers/komentarController.js"></script>
+
 
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
 <!--<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>-->
@@ -36,6 +40,7 @@
 <script src="directives/listOfObjectsDirective.js"></script>
 <script src="directives/insertOfObjectDirective.js"></script>
 <script src="directives/PrevodEnBsDirective.js"></script>
+    <script src="directives/listOfKomentari.js"></script>
 </head>
 
 <body  ng-app="placestogoApp">
@@ -52,6 +57,7 @@
         <li><a href="#/login"><i></i> Login</a></li>
         <li><a href="#/registration"><i></i> Registration</a></li>
 	<li><a href="#/reset"><i></i> Reset password</a></li>
+          <li><a href="#/profil"><i></i> Profil</a></li>
 </ul>
           </div>
   </nav>
@@ -65,9 +71,11 @@
                 </div>
     
   </div>
-<!--     <div ng-controller="kategorijaController" >
 
-             Answer: {{kategorije}}
+
+   <!--<div ng-controller="komentarController" >
+
+             Answer: {{komentare}}
 
      </div>-->
 

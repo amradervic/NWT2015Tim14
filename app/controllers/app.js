@@ -43,6 +43,13 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
 			templateUrl : 'views/home.html',
 			controller  : 'objekatController'
 		})
+
+        .when('/profil', {
+            templateUrl : 'views/profil.html',
+            controller  : 'komentarController'
+        })
+
+
                 
              .otherwise({ redirectTo: '/home' });
 
