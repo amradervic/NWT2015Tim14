@@ -112,7 +112,8 @@ function getOcjene(){
         */
         objekatFactory.insertObjekat($scope.objekt)
             .success(function (data) {
-                $scope.status = 'Inserted Objekat! Refreshing objekat list.';
+                
+                //$scope.status = 'Inserted Objekat! Refreshing objekat list.';
                 $scope.objekti.push($scope.objekt);
                 console.log(data);
             }).
@@ -139,6 +140,24 @@ function getOcjene(){
             $scope.status = 'Unable to delete korisnici: ' + error.message;
         });
     };
+    
+     var daftPoints = [[0, 4]],
+        punkPoints = [[1, 20]];
+    
+    var data1 = [
+        {
+            data: daftPoints,
+            color: '#00b9d7',
+            bars: {show: true, barWidth:1, fillColor: '#00b9d7', order: 1, align: "center" }
+        },
+        {
+            data: punkPoints,
+            color: '#3a4452',
+            bars: {show: true, barWidth:1, fillColor: '#3a4452', order: 2, align: "center" }
+        }
+    ];      
+    
+    $scope.data2 = data1;
 /*
     $scope.getObjektiOrders = function (id) {
         objekatFactory.getOrders(id)

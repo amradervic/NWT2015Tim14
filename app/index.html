@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <head>
+    
+<script src="js/jquery.js"></script>
+<script  src="js/jquery.jqplot.min.js"></script>
+<script  src="js/jqplot.pieRenderer.min.js"></script>
+<link href="css/jquery.jqplot.css" rel="stylesheet"/>
 <script src="js/angular.js"></script>
 <script src="js/angular-route.js"></script>
 <script src="js/angular-resource.js"></script>
 <script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
 <script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+<script src="js/notify.min.js"></script>
 <!--<script src="controllers/personController.js"></script>-->
 <!--<script src="controllers/korisnikController.js"></script>
 <script src="controllers/mainController.js"></script>
@@ -25,6 +31,7 @@
 <script src="controllers/kategorijaController.js"></script>
 
 -->
+<script src="js/chart.js"></script>
 <script src="js/angular-translate.js"></script>
 <script src="controllers/TranslateController.js"></script>
 
@@ -58,29 +65,20 @@
         <li><a href="#/login"><i></i> Login</a></li>
         <li><a href="#/registration"><i></i> Registration</a></li>
 	<li><a href="#/reset"><i></i> Reset password</a></li>
-          <li><a href="#/profil"><i></i> Profil</a></li>
-           <li><a href="#/search"><i></i> Search</a></li>
+        <li><a href="#/profil"><i></i> Profil</a></li>
+        <li><a href="#/search"><i></i> Search</a></li>
+        <li><a href="#/dashboard"><i></i>Dashboard</a></li>
 </ul>
           </div>
   </nav>
-   
-     <div id="main">
-  
-    <!-- angular templating -->
-		<!-- this is where content will be injected -->
+<!--   
+     <div id="main" class="container-fluid col-md-4">
+     <a href="#/addobject">Add Object</a>-->
                 <div ng-view>
                     
                 </div>
     
-  </div>
-
-
-   <!--<div ng-controller="komentarController" >
-
-             Answer: {{komentare}}
-
-     </div>-->
-
+<!--  </div>-->
 
 </body>
 

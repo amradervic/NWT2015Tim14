@@ -33,10 +33,10 @@ services.factory('korisnikFactory', function($http) {
                             
                         })
               .success(function(){ 
-                  alert("Sifra je resetovana");
+                   $.notify("Sifra je resetovana", "success", "center");
               })
               .error(function(){
-                            alert("Greška u procesiranju zahtjeva");
+                   $.notify("Greska u procesiranju zahtjeva", "danger");
                         });
     }
     
@@ -66,22 +66,19 @@ services.factory('korisnikFactory', function($http) {
                             
                         })
               .success(function(){ 
-                  setTimeout(function(){ alert("Podaci za korisnika su uneseni. Uskoro cete dobiti aktivacijski email."); }, 3000);
+                  setTimeout(function(){
+                       $.notify("Podaci za korisnika su uneseni. Uskoro cete dobiti aktivacijski email.", "info");
+                      }, 3000);
                  
               })
               .error(function(){
-                            alert("Greška u procesiranju zahtjeva");
+                           $.notify("Greska u procesiranju zahtjeva", "danger", "center");
                         });
                
-           
-                      alert("Korisnik je dodan");
-                               
-                           
-                            
-                            
+            $.notify("Korisnik je dodan", "success");
                         })
                          .error(function(){
-                            alert("Greška u procesiranju zahtjeva");
+                            $.notify("Greska u procesiranju zahtjeva", "danger", "center");
                         });
     };
     return factory;

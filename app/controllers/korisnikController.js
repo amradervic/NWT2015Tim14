@@ -82,6 +82,7 @@ $scope.reset = {
 		 };*/
         korisnikFactory.insertKorisnik(kor)
             .success(function (data) {
+                 $.notify("Registration finished", "success");
                 $scope.status = 'Inserted Korisnik! Refreshing korisnik list.';
                 $scope.korisnici.push(kor);
                 console.log(data);

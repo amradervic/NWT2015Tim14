@@ -24,11 +24,12 @@ services.factory('objekatFactory', function($http) {
                             data : objekat
                         })
            .success(function(){
-                             alert("Objekat je uspjesno dodan!");
+                $.notify("Objekat je uspjesno dodan!", "success");
+
                             
                         })
                          .error(function(){
-                            alert("Greška u procesiranju zahtjeva");
+                             $.notify("Greska u procesiranju zahtjeva", "danger");
                         });
     };
 
