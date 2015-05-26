@@ -7,9 +7,9 @@ var app, deps;
 
   deps = ['treeGrid','xtForm',
           'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
-          'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar','ui.chart'];
+          'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar'];
 
-app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive', 'pascalprecht.translate', 'ui.chart']);
+app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive', 'pascalprecht.translate']);
 
 // konfiguracija ruta
 app.config(function($routeProvider, $httpProvider, $translateProvider) {
@@ -57,7 +57,13 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
              .when('/dashboard', {
       templateUrl : 'views/dashboard.html',
       controller  : 'objekatController'
-             })   
+             })  
+             
+              .when('/useradministration', {
+      templateUrl : 'views/useradministration.html',
+      controller  : 'korisnikController'
+             })  
+             
              .otherwise({ redirectTo: '/home' });
 
  /* $translateProvider.translations('en', {
@@ -116,20 +122,7 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
   $translateProvider.preferredLanguage('en');
 });
 
-app.value('charting', {
-    pieChartOptions: { 
-      seriesDefaults: {
-        // Make this a pie chart.
-        renderer: jQuery.jqplot.PieRenderer, 
-        rendererOptions: {
-          // Put data labels on the pie slices.
-          // By default, labels show the percentage of the slice.
-          showDataLabels: true
-        }
-      }, 
-      legend: { show:true, location: 'e' }
-    }
-  })
+
         //dio koji sluzi da user i dalje ostane logovan na stranici i prilikom ucitavanja drugih stranica
        /* .run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {

@@ -1,0 +1,28 @@
+<div ng-controller="korisnikController"> 
+
+<div id="table-wrapper">
+  <div id="table-scroll">
+<table  class="table table-striped table-bordered table-condensed">
+    <tr>
+   <th><span class="text">Username</span></th>
+   <th><span class="text">Email</span></th>
+   <th><span class="text">Active status</span></th>
+   <th><span class="text">Ban status</span></th>
+   <th><span class="text">Ban/unban user</span></th>
+ </tr>
+  <tr ng-repeat="korisnik in korisnici">
+    <td>
+    {{ korisnik.korisnickoIme }}</td>
+    <td>
+    {{ korisnik.email }}</td>
+    <td>
+    {{ korisnik.aktivan }}</td>
+     <td>
+    {{ korisnik.banovan }}</td>
+      <td>
+          <button class="btn btn-default" ng-if="korisnik.banovan==0" ng-click="banKorisnik(korisnik, korisnik.idKorisnik)">Ban</button>
+    <button class="btn btn-default" ng-if="korisnik.banovan==1" ng-click="unbanKorisnik(korisnik, korisnik.idKorisnik)">Unban</button></td>
+  </tr>
+</table>
+  </div></div>
+</div>

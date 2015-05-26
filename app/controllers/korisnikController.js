@@ -4,28 +4,12 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
         function ($scope, korisnikFactory) {
 
  //   $scope.status;
- //   $scope.korisnici='';
+   $scope.korisnici=[];
   //  $scope.orders;
 
-
-            /*
- $scope.korisnik = {
-     idKorisnik: "null",
-        korisnickoIme : "",
-        sifra: "",
-        email : "",
-        tip: "obicni",
-        aktivan: "0",
-	banovan: "0" 
-        
-        
-    };
-    */
-  /*
 $scope.reset = {
     email: ""
-} */
-//	insertKorisnik();
+} 
  getKorisnici();
  
     function getKorisnici() {
@@ -48,24 +32,27 @@ $scope.reset = {
             });
     }
 
+$scope.banKorisnik=function(kor, id) {
+           
+            kor.banovan=1;
+            kor.aktivan=1;
+            
+
+             korisnikFactory.updateKorisnik(kor, id);
+
+    };
+    
+    $scope.unbanKorisnik=function(kor, id) {
+            
+            kor.banovan=0;
+            kor.aktivan=0;
+             korisnikFactory.updateKorisnik(kor, id);
+    };
 
     function updateKorisnik(kor, id) {
-        /*var kor;
-        for (var i = 0; i < $scope.korisnici.length; i++) {
-            var currKorisnik = $scope.korisnici[i];
-            if (currKorisnik.ID === id) {
-                kor = currKorisnik;
-                break;
-            }
-        }
-*/
-        korisnikFactory.updateKorisnik(kor, id)
-          .success(function () {
-              $scope.status = 'Updated Korisnik! Refreshing korisnik list.';
-          })
-          .error(function (error) {
-              $scope.status = 'Unable to update korisnik: ' + error.message;
-          });
+
+        korisnikFactory.updateKorisnik(kor, id);
+   
     };
 
     function insertKorisnik(kor){
@@ -92,43 +79,10 @@ $scope.reset = {
             });
 		}
 
-//	function actionRegister(){
-//		$scope.submit=function(){
-//			alert($scope.email);
-//		}
-//		//req.body.username;
-//		var username = document.form.username.value,
-//		email = document.form.email.value,
-//		password = document.form.password.value;
-//		var kor = {
-//			"idKorisnik": "null",
-//			"korisnickoIme": "hard",
-//			"sifra": "kodirane",
-//			"email": "vrijednosti",
-//			"tip": "obicni",
-//			"aktivan": "0",
-//			"banovan": "0" 
-//		 };
-//		
-//		 korisnikFactory.insertKorisnik(kor)
-//            .success(function (data) {
-//                $scope.status = 'Inserted Korisnik! Refreshing korisnik list.';
-//                $scope.korisnici.push(kor);
-//                console.log(data);
-//            }).
-//            error(function(error) {
-//                $scope.status = 'Unable to insert korisnik: ' + error.message;
-//            });
-//		//document.form.username.focus();
-//		//document.getElementById("errorBox").innerHTML="ime glasi"+username;
-//	}
-
  $scope.actionRegisterUser=function(){
 		korisnikFactory.registerKorisnik($scope.korisnik, $scope.korisnik.email);
 		//document.getElementById("errorBox").innerHTML="ime glasi"+username;
 	};
-
-
 
     function deleteKorisnik(id) {
         korisnikFactory.deleteKorisnik(id)

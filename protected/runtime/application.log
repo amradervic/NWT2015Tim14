@@ -620,3 +620,25 @@ Stack trace:
 REQUEST_URI=/NWT2015Tim14/index.php/api/korisnici
 HTTP_REFERER=http://localhost/NWT2015Tim14/app/index.html
 ---
+2015/05/27 00:21:24 [error] [php] Undefined variable: msg (C:\wamp\www\NWT2015Tim14\protected\controllers\ApiController.php:401)
+Stack trace:
+#0 C:\wamp\www\YiiRoot\framework\web\CController.php(286): ApiController->runAction()
+#1 C:\wamp\www\YiiRoot\framework\web\CController.php(265): ApiController->runActionWithFilters()
+#2 C:\wamp\www\YiiRoot\framework\web\CWebApplication.php(282): ApiController->run()
+#3 C:\wamp\www\YiiRoot\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\YiiRoot\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 C:\wamp\www\NWT2015Tim14\index.php(13): CWebApplication->run()
+REQUEST_URI=/NWT2015Tim14/index.php/api/korisnici/163e981e-dace-11e4-a387-4c72b97adfe5
+in C:\wamp\www\NWT2015Tim14\protected\controllers\ApiController.php (401)
+in C:\wamp\www\NWT2015Tim14\index.php (13)
+2015/05/27 00:26:31 [error] [php] Undefined variable: msg (C:\wamp\www\NWT2015Tim14\protected\controllers\ApiController.php:401)
+Stack trace:
+#0 C:\wamp\www\YiiRoot\framework\web\CController.php(286): ApiController->runAction()
+#1 C:\wamp\www\YiiRoot\framework\web\CController.php(265): ApiController->runActionWithFilters()
+#2 C:\wamp\www\YiiRoot\framework\web\CWebApplication.php(282): ApiController->run()
+#3 C:\wamp\www\YiiRoot\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\YiiRoot\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 C:\wamp\www\NWT2015Tim14\index.php(13): CWebApplication->run()
+REQUEST_URI=/NWT2015Tim14/index.php/api/korisnici/163e981e-dace-11e4-a387-4c72b97adfe5
+in C:\wamp\www\NWT2015Tim14\protected\controllers\ApiController.php (401)
+in C:\wamp\www\NWT2015Tim14\index.php (13)

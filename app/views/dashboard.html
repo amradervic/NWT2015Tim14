@@ -1,15 +1,50 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="objekatController">
 <div class="panel panel-default col-md-4">
     <div class="panel-heading">Object categories</div>
     <div class="panel-body">
-<!--        <chart ng-model='data' ng-controller="objekatController"></chart>  -->
-        {{data}}
+       <canvas id="canvas" width="270" height="290"></canvas>
     </div>
 </div>
 
 <div class="panel panel-default col-md-4">
     <div class="panel-heading">
-        This Page is Disabled</div>
-    <div class="panel-body">Look, I'm in a panel!</div>
+        Number of likes
+      </div>
+    <div class="panel-body">
+        <div id="canvas-holder">
+			<canvas id="chart-area" width="300" height="150"/>
+		</div>
+    </div>
+</div>
+
+<div class="panel panel-default col-md-4">
+    <div class="panel-heading">
+        Number of likes
+      </div>
+    <div class="panel-body">
+       <div id="canvas-holder">
+			<canvas id="chart-area2" width="300" height="120"/>
+		</div>
+    </div>
+</div>
+<div class="panel panel-default col-md-4">
+    <div class="panel-heading">
+        Number of visits
+      </div>
+    <div class="panel-body">
+        <div id="canvas-holder">
+			<canvas id="canvas2" width="300" height="150"/>
+		</div>
+    </div>
+</div>
+    <div class="panel panel-default col-md-4">
+    <div class="panel-heading">
+        Number of likes
+      </div>
+    <div class="panel-body">
+        <div id="canvas-holder">
+			<canvas id="canvas3" width="300" height="150"/>
+		</div>
+    </div>
 </div>
 </div>
