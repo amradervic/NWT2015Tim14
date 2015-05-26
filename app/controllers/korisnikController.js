@@ -35,7 +35,7 @@ $scope.reset = {
 $scope.banKorisnik=function(kor, id) {
            
             kor.banovan=1;
-            kor.aktivan=1;
+            
             
 
              korisnikFactory.updateKorisnik(kor, id);
@@ -45,7 +45,7 @@ $scope.banKorisnik=function(kor, id) {
     $scope.unbanKorisnik=function(kor, id) {
             
             kor.banovan=0;
-            kor.aktivan=0;
+          
              korisnikFactory.updateKorisnik(kor, id);
     };
 
