@@ -1,5 +1,5 @@
-controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjenaFactory',
-        function ($scope, objekatFactory, ocjenaFactory) {
+controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjenaFactory','korisnikFactory',
+        function ($scope, objekatFactory, ocjenaFactory,korisnikFactory) {
 			//chart za prikaz objekata po kategorijama
 			objekatFactory.getObjekti().then(function (data){
 			var obj = data.data;
@@ -73,7 +73,62 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 						
 						console.log($scope.podaci);
 					});	
-			});	
+			});
+                        
+                        
+                        
+                    ///za komentare     
+                korisnikFactory.getKorisnici().then(function (data2){
+				
+				var obj = data2.data;
+				
+				var objekatkomentari={};
+				var brojac ={};
+				for(var i =0; i<obj.length;i++){
+					objekatkomentari[i]=parseFloat(0);
+					brojac[i]=0;
+				}
+				
+					komentarFactory.getKomentare().then(function (data1){
+						var kom = data1.data;
+						var duzina =0;
+						//if(obj.length>ocj.length) {duzina =ocj.length;}
+						//else{duzina =obj.length;}
+						for(var i=0; i<kom.length; i++){
+							for(var j=0; j<kom.length; j++){
+                                                           
+								if(obj[i].idKorisnik == kom[j].Korisnici_idKorisnik){
+									objekatkomentari[obj[i].Korisnici_idKorisnik]=parseFloat(objekatkomentari[obj[i].Korisnici_idKorisnik]);
+									brojac[obj[i].idKorisnik]=parseInt(brojac[obj[i].idKorisnik])+1;
+								}
+							}
+						}
+						//console.log('objekata broj jedan ima:'+brojac[1]+'cijene:'+ objekatocjene[1]);
+						/*for(var i=0; i<obj.length; i++){
+							objekatkomentari[i]=parseFloat(parseFloat(objekatocjene[i])/parseInt(brojac[i]));
+						}
+						*/
+						
+						//kao oznake uzimamo nazive objekata, a kao podatke njihove prosjecne ocjene
+						$scope.oznake=new Array();
+						$scope.podaci=new Array();
+						for(var i=0; i<obj.length-1; i++){
+							
+						$scope.oznake.push(obj[i].korisnickoIme);
+						if(String(objekatkomentari[i+1])!="NaN"){
+							$scope.podaci.push(parseFloat(objekatkomentari[obj[i].idKorisnik]));
+						}
+						else{
+							$scope.podaci.push(0);
+						}
+						}
+						
+						console.log($scope.podaci);
+					});	
+			});	        
+                        
+                        
+                        
 			 
 	var barChartData = {
 		labels : ["January","February","March","April","May","June","July"],
@@ -184,6 +239,13 @@ if(document.getElementById("canvas2")!=null){
 			responsive: true
 		});
 		 }
+                if(document.getElementById("canvas4")!=null){	       
+                var ctx6 = document.getElementById("canvas4").getContext("2d");
+		window.myLine = new Chart(ctx6).Line(lineChartData, {
+			responsive: true
+		});
+		 } 
+                 
 }]);	
 
 
