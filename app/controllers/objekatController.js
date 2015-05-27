@@ -2,6 +2,69 @@ controllers.controller('objekatController',['$scope', 'objekatFactory', 'ocjenaF
         function ($scope, objekatFactory, ocjenaFactory) {
             $scope.objekti={};
 
+			//dobavljanje svih objekata
+function getOcjene(){
+    ocjenaFactory.getOcjene()
+            .success(function (_ocjene) {
+                $scope.ocjene = _ocjene;
+                var zbir=parseInt("0");
+                var ukupno=0;
+                for (var i = 0; i < $scope.ocjene.length; i++) {
+                var ocj = $scope.ocjene[i];
+                if(ocj.Objekat_idObjekat==1){
+                zbir=zbir+parseInt(ocj.vrijednost);
+                ukupno ++;
+            }
+            }
+            var prosjecna=zbir/ukupno;
+            $scope.prosjek=zbir/ukupno;
+            })
+            .error(function (error) {
+                $scope.status = 'Unable to load ocjene data: ' + error.message;
+            });
+}
+
+
+    $scope.getObjekti=function () {
+        getOcjene();
+        objekatFactory.getObjekti()
+            .success(function (_objekti) {
+                $scope.objekti = _objekti;
+                
+              ocjenaFactory.getOcjene()
+            .success(function (_ocjene) {
+                $scope.ocjene = _ocjene;
+                for (var i = 0; i < $scope.objekti.length; i++) {
+                var zbir=parseInt("0");
+                var ukupno=0;
+                for (var j = 0; j < $scope.ocjene.length; j++) {
+                var ocj = $scope.ocjene[j];
+                var obj = $scope.objekti[i];
+                if(parseInt(ocj.Objekat_idObjekat)==parseInt(obj.idObjekat)){
+                zbir=zbir+parseInt(ocj.vrijednost);
+                ukupno ++;
+            }
+            }
+            var prosjecna=zbir/ukupno;
+            $scope.objekti[i].prosjek=zbir/ukupno;
+            $scope.objekti[i].totalReviews = zbir/ukupno;//new Array(zbir/ukupno); bio bug nista nije radilo ako ne uklonim ovo
+            }})
+            .error(function (error) {
+                $scope.status = 'Unable to load ocjene data: ' + error.message;
+            });
+               
+                })
+            .error(function (error) {
+                $scope.status = 'Unable to load objekti data: ' + error.message;
+            });
+            
+           
+            
+    };
+    
+  $scope.getObjekti();
+  
+			
 //$scope.getDashboard=function(){
 var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 
@@ -25,13 +88,29 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 		]
 
 	}
+
+if(document.getElementById("canvas")!=null){	
 var ctx = document.getElementById("canvas").getContext("2d");
+
 		window.myBar = new Chart(ctx).Bar(barChartData, {
 			responsive : true
 		});
+}
 
-var pieData = [
-				{
+var pieData=[];
+
+
+				for(i=0; i<1; i++){//$scope.objekti.length; i++){
+					//var vrijednost=$scope.objekti[i].prosjek;
+console.log('doslo do ubacivanja objekata u pie');					
+					var data={
+						value: 25,
+						color:"#F7464A",
+						highlight: "#FF5A5E",
+						label: "ds"};
+					pieData.push(data);
+				}
+				/*{
 					value: 25,
 					color:"#F7464A",
 					highlight: "#FF5A5E",
@@ -61,11 +140,11 @@ var pieData = [
 					highlight: "#616774",
 					label: "1"
 				}
-
-			];
-      
+*/
+if(document.getElementById("chart-area")!=null){	      
       var ctx2 = document.getElementById("chart-area").getContext("2d");
 				window.myPie = new Chart(ctx2).Pie(pieData);
+				}
       var polarData = [
 				{
 					value: 300,
@@ -100,11 +179,12 @@ var pieData = [
 
 			];
 
-			
+			if(document.getElementById("chart-area2")!=null){	
 				var ctx3 = document.getElementById("chart-area2").getContext("2d");
 				window.myPolarArea = new Chart(ctx3).PolarArea(polarData, {
 					responsive:true
 				});
+			}
 
 var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 		var lineChartData = {
@@ -134,81 +214,20 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 
 		}
 
-
+if(document.getElementById("canvas2")!=null){	
 		var ctx4 = document.getElementById("canvas2").getContext("2d");
 		window.myLine = new Chart(ctx4).Line(lineChartData, {
 			responsive: true
 		});
-                
+}
+         if(document.getElementById("canvas3")!=null){	       
                 var ctx5 = document.getElementById("canvas3").getContext("2d");
 		window.myLine = new Chart(ctx5).Line(lineChartData, {
 			responsive: true
 		});
+		 }
  //               };
-//dobavljanje svih objekata
-function getOcjene(){
-    ocjenaFactory.getOcjene()
-            .success(function (_ocjene) {
-                $scope.ocjene = _ocjene;
-                var zbir=parseInt("0");
-                var ukupno=0;
-                for (var i = 0; i < $scope.ocjene.length; i++) {
-                var ocj = $scope.ocjene[i];
-                if(ocj.Objekat_idObjekat==1){
-                zbir=zbir+parseInt(ocj.vrijednost);
-                ukupno ++;
-            }
-            }
-            var prosjecna=zbir/ukupno;
-            $scope.prosjek=zbir/ukupno;
-            })
-            .error(function (error) {
-                $scope.status = 'Unable to load ocjene data: ' + error.message;
-            });
-    
-   
-         
-}
 
-
-    $scope.getObjekti=function () {
-        getOcjene();
-        objekatFactory.getObjekti()
-            .success(function (_objekti) {
-                $scope.objekti = _objekti;
-                
-              ocjenaFactory.getOcjene()
-            .success(function (_ocjene) {
-                $scope.ocjene = _ocjene;
-                for (var i = 0; i < $scope.objekti.length; i++) {
-                var zbir=parseInt("0");
-                var ukupno=0;
-                for (var j = 0; j < $scope.ocjene.length; j++) {
-                var ocj = $scope.ocjene[j];
-                var obj = $scope.objekti[i];
-                if(parseInt(ocj.Objekat_idObjekat)==parseInt(obj.idObjekat)){
-                zbir=zbir+parseInt(ocj.vrijednost);
-                ukupno ++;
-            }
-            }
-            var prosjecna=zbir/ukupno;
-            $scope.objekti[i].prosjek=zbir/ukupno;
-            $scope.objekti[i].totalReviews = new Array(zbir/ukupno);
-            }})
-            .error(function (error) {
-                $scope.status = 'Unable to load ocjene data: ' + error.message;
-            });
-               
-                })
-            .error(function (error) {
-                $scope.status = 'Unable to load objekti data: ' + error.message;
-            });
-            
-           
-            
-    };
-    
-  $scope.getObjekti();
 // dobavljanje objekta
     function getObjekat(id) {
         objekatFactory.getObjekat(id)
@@ -318,4 +337,3 @@ function getOcjene(){
     // => activePoints is an array of segments on the canvas that are at the same position as the click event.
 
 }]);
-
