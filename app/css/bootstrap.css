@@ -4056,6 +4056,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  
+  background: url("logo.jpg") no-repeat;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4065,6 +4067,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
+
+
   }
 }
 .navbar-collapse {
