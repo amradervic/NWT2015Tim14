@@ -23,7 +23,56 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 			 $scope.randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 			 
 			 var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-
+			//prikaz po ocjenama objekata
+			objekatFactory.getObjekti().then(function (data2){
+				
+				var obj = data2.data;
+				
+				var objekatocjene={};
+				var brojac ={};
+				for(var i =0; i<obj.length;i++){
+					objekatocjene[i]=parseFloat(0);
+					brojac[i]=0;
+				}
+				
+					
+					ocjenaFactory.getOcjene().then(function (data1){
+						var ocj = data1.data;
+						var duzina =0;
+						//if(obj.length>ocj.length) {duzina =ocj.length;}
+						//else{duzina =obj.length;}
+						for(var i=0; i<obj.length; i++){
+							for(var j=0; j<ocj.length; j++){
+								if(obj[i].idObjekat == ocj[j].Objekat_idObjekat){
+									objekatocjene[obj[i].idObjekat]=parseFloat(objekatocjene[obj[i].idObjekat])+parseInt(ocj[j].vrijednost);
+									brojac[obj[i].idObjekat]=parseInt(brojac[obj[i].idObjekat])+1;
+								}
+							}
+						}
+						//console.log('objekata broj jedan ima:'+brojac[1]+'cijene:'+ objekatocjene[1]);
+						for(var i=0; i<obj.length; i++){
+							objekatocjene[i]=parseFloat(parseFloat(objekatocjene[i])/parseInt(brojac[i]));
+						}
+						
+						
+						//sad sortirati niz objekatocjene
+						$scope.oznake=new Array();
+						$scope.podaci=new Array();
+						for(var i=0; i<obj.length-1; i++){
+							
+						$scope.oznake.push(obj[i].naziv);
+						if(String(objekatocjene[i+1])!="NaN"){
+							$scope.podaci.push(parseFloat(objekatocjene[i+1]));
+						}
+						else{
+							$scope.podaci.push(0);
+						}
+						}
+						
+						console.log($scope.podaci);
+					});	
+			});	
+			 
 	var barChartData = {
 		labels : ["January","February","March","April","May","June","July"],
 		datasets : [
