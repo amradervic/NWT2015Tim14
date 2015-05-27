@@ -1,6 +1,6 @@
 controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjenaFactory',
         function ($scope, objekatFactory, ocjenaFactory) {
-			
+			//chart za prikaz objekata po kategorijama
 			objekatFactory.getObjekti().then(function (data){
 			var obj = data.data;
 			$scope.labels = ["Restaurant", "Caffe", "Shopping", "Hotel"];
@@ -8,12 +8,14 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 			var kafici=0;
 			var shopping=0;
 			var hotel =0;
+			//sabiramo objekte po kategorijama
 			for(var i=0; i<obj.length; i++){
 				if(String(obj[i].tip)=="Restoran"){restorani=restorani+1;}
 				if(String(obj[i].tip)=="Caffe"){kafici=kafici+1;}
 				if(String(obj[i].tip)=="Shopping"){shopping=shopping+1;}
 				if(String(obj[i].tip)=="Hotel"){hotel=hotel+1;}
 			}
+			//kao podatke saljemo broj objekata u svakoj kategoriji pojedinacno
 			$scope.data = [parseInt(restorani), parseInt(kafici), parseInt(shopping), parseInt(hotel)];
 			});	
 			 $scope.onClick = function (points, evt) {
@@ -24,6 +26,7 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 			 
 			 var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 			//prikaz po ocjenama objekata
+			//prolaz kroz niz objekata i ocjena i formiranje novog niza koji povezuje broj ocjena po objektu sa indeksom novog niza
 			objekatFactory.getObjekti().then(function (data2){
 				
 				var obj = data2.data;
@@ -35,7 +38,6 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 					brojac[i]=0;
 				}
 				
-					
 					ocjenaFactory.getOcjene().then(function (data1){
 						var ocj = data1.data;
 						var duzina =0;
@@ -55,7 +57,7 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 						}
 						
 						
-						//sad sortirati niz objekatocjene
+						//kao oznake uzimamo nazive objekata, a kao podatke njihove prosjecne ocjene
 						$scope.oznake=new Array();
 						$scope.podaci=new Array();
 						for(var i=0; i<obj.length-1; i++){
