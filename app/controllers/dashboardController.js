@@ -3,16 +3,18 @@ controllers.controller('dashboardController',['$scope', 'objekatFactory', 'ocjen
 			
 			objekatFactory.getObjekti().then(function (data){
 			var obj = data.data;
-			$scope.labels = ["Restoran", "Caffe", "Shopping"];
+			$scope.labels = ["Restaurant", "Caffe", "Shopping", "Hotel"];
 			var restorani=0;
 			var kafici=0;
 			var shopping=0;
+			var hotel =0;
 			for(var i=0; i<obj.length; i++){
 				if(String(obj[i].tip)=="Restoran"){restorani=restorani+1;}
 				if(String(obj[i].tip)=="Caffe"){kafici=kafici+1;}
 				if(String(obj[i].tip)=="Shopping"){shopping=shopping+1;}
+				if(String(obj[i].tip)=="Hotel"){hotel=hotel+1;}
 			}
-			$scope.data = [parseInt(restorani), parseInt(kafici), parseInt(shopping)];
+			$scope.data = [parseInt(restorani), parseInt(kafici), parseInt(shopping), parseInt(hotel)];
 			});	
 			 $scope.onClick = function (points, evt) {
 				 console.log(points, evt);
