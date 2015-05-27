@@ -9,7 +9,7 @@ var app, deps;
           'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
           'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar'];
 
-app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive', 'pascalprecht.translate']);
+app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive', 'pascalprecht.translate', 'chart.js']);
 
 // konfiguracija ruta
 app.config(function($routeProvider, $httpProvider, $translateProvider) {
@@ -56,7 +56,7 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
              
              .when('/dashboard', {
       templateUrl : 'views/dashboard.html',
-      controller  : 'objekatController'
+      controller  : 'dashboardController'
              })  
              
               .when('/useradministration', {
