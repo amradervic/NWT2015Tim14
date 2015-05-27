@@ -10,8 +10,23 @@ controllers.controller('korisnikController',['$scope', 'korisnikFactory',
 $scope.reset = {
     email: ""
 } 
- getKorisnici();
- 
+getKorisnici();
+
+
+
+            korisnikFactory.getKorisnici().then(function (data) {
+    var obj=data.data;
+    $scope.labels=["Banovanih", "Aktivnih"]
+
+    var banovanih = 0;
+    for (var i = 0; i<obj.length; i++) {
+        if((obj[i].banovan)==1) banovanih++;
+         
+    }
+    $scope.data = [banovanih, obj.length-banovanih];
+ });
+
+
     function getKorisnici() {
         korisnikFactory.getKorisnici()
             .success(function (_korisnici) {
@@ -21,6 +36,7 @@ $scope.reset = {
                 $scope.status = 'Unable to load korisnici data: ' + error.message;
             });
     }
+
 
     function getKorisnik(id) {
         korisnikFactory.getKorisnik(id)
@@ -33,20 +49,42 @@ $scope.reset = {
     }
 
 $scope.banKorisnik=function(kor, id) {
-           
+         korisnikFactory.getKorisnici().then(function (data) {
+    var obj=data.data;
+    $scope.labels=["Banovanih", "Aktivnih"]
+    var banovanih = 0;
+    for (var i = 0; i<obj.length; i++) {
+        if((obj[i].banovan)==1) banovanih++;
+    
+    }
+    $scope.data = [banovanih+1, obj.length-banovanih-1]; });
+   
             kor.banovan=1;
             
-            
-
+                   
              korisnikFactory.updateKorisnik(kor, id);
+
+      
+
 
     };
     
     $scope.unbanKorisnik=function(kor, id) {
-            
+                             korisnikFactory.getKorisnici().then(function (data) {
+    var obj=data.data;
+    $scope.labels=["Banovanih", "Aktivnih"]
+    var banovanih = 0;
+    for (var i = 0; i<obj.length; i++) {
+        if((obj[i].banovan)==1) banovanih++;
+      
+    }
+    $scope.data = [banovanih-1, obj.length-banovanih+1];
+ });   
             kor.banovan=0;
           
              korisnikFactory.updateKorisnik(kor, id);
+
+    
     };
 
     function updateKorisnik(kor, id) {
