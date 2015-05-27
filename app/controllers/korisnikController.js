@@ -11,19 +11,19 @@ $scope.reset = {
 getKorisnici();
 
 
-
+   $scope.labele=["Banovanih", "Aktivnih"];
             korisnikFactory.getKorisnici().then(function (data) {
     var obj=data.data;
-	console.log('prva');
-    $scope.labels=["Banovanih", "Aktivnih"];
-	console.log('druga');
+//	console.log('prva');
+ 
+//	console.log('druga');
 	
     var banovanih = 0;
     for (var i = 0; i<obj.length; i++) {
         if((obj[i].banovan)==1) {banovanih++};
          
     }
-    $scope.data = [banovanih, obj.length-banovanih];
+    $scope.data = [parseInt(banovanih), parseInt(obj.length-banovanih)];
  });
 
 
@@ -51,7 +51,7 @@ getKorisnici();
 $scope.banKorisnik=function(kor, id) {
          korisnikFactory.getKorisnici().then(function (data) {
     var obj=data.data;
-    $scope.labels=["Banovanih", "Aktivnih"];
+ //   $scope.labels=["Banovanih", "Aktivnih"];
     var banovanih = 0;
     for (var i = 0; i<obj.length; i++) {
         if((obj[i].banovan)==1) banovanih++;
@@ -72,7 +72,7 @@ $scope.banKorisnik=function(kor, id) {
     $scope.unbanKorisnik=function(kor, id) {
                              korisnikFactory.getKorisnici().then(function (data) {
     var obj=data.data;
-    $scope.labels=["Banovanih", "Aktivnih"];
+//    $scope.labels=["Banovanih", "Aktivnih"];
     var banovanih = 0;
     for (var i = 0; i<obj.length; i++) {
         if((obj[i].banovan)==1) banovanih++;
