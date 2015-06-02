@@ -118,8 +118,20 @@ $scope.banKorisnik=function(kor, id) {
 		}
 
  $scope.actionRegisterUser=function(){
-		korisnikFactory.registerKorisnik($scope.korisnik, $scope.korisnik.email);
-		//document.getElementById("errorBox").innerHTML="ime glasi"+username;
+      var korisnik = {
+            
+            "korisnickoIme": $scope.korisnik.korisnickoIme,
+            "sifra": $scope.korisnik.sifra,
+            "email":$scope.korisnik.email,
+            "tip": "obicni",
+            "banovan": "0",
+            "aktivan":"0",
+            "idKorisnik":"1"
+        };
+     
+                
+		korisnikFactory.registerKorisnik(korisnik, $scope.korisnik.email);
+ 		//document.getElementById("errorBox").innerHTML="ime glasi"+username;
 	};
 
     function deleteKorisnik(id) {
