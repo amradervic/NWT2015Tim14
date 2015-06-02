@@ -1,6 +1,19 @@
-<div ng-controller="objekatController">
+<div ng-controller="objekatController" class="row">
 
-    <div ng-listofobjects>{{getObjekti()}} </div>
-    <div ng-insertofobject></div>  
-        
+    <div class="col-md-6 left" ng-listofobjects>{{getObjekti()}} </div>
+   
+
+    <div  class="col-md-6  pull-right">
+ 
+    <a href="" ng-click="showme=true">Dodaj objekat</a>
+     <button ng-click="showme=false">Ponisti</button> 
+  
+    <div class="wrapper" >
+    <p ng-hide="showme"></p>
+    
+    <h2 ng-show="showme"><div  ng-insertofobject ></div></h2>
+
+    </div>
+    </div>
+    
 </div>
