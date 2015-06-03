@@ -9,7 +9,7 @@ var app, deps;
           'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
           'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar'];
 
-app = angular.module('placestogoApp', ['ngRoute', 'ngCookies' ,'services', 'controllers', 'directive', 'pascalprecht.translate', 'chart.js']);
+app = angular.module('placestogoApp', ['ngRoute', 'ngCookies', 'angular-md5' ,'services', 'controllers', 'directive', 'pascalprecht.translate', 'chart.js']);
 //angular.module('app', ['ngCookies']);
 // konfiguracija ruta
 app.config(function($routeProvider, $httpProvider, $translateProvider, $cookiesProvider) {

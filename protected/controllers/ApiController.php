@@ -194,8 +194,14 @@ $criteria->params = array(':korisnickoIme'=>$_GET['id']);
                 }
     foreach($put_vars as $var=>$value) {
         // Does model have this attribute? If not, raise an error
-        if($model->hasAttribute($var))
-            $model->$var = $value;
+        if($model->hasAttribute($var)) {
+
+            if($var=='sifra')
+
+            $model->$var=md5($value);
+        else {
+            $model->$var = $value; 
+        }}
         else {
             $this->_sendResponse(500,
                 sprintf('Parameter <b>%s</b> is not allowed for model <b>%s</b>',

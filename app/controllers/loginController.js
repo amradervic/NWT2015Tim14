@@ -1,6 +1,6 @@
 controllers.controller('loginController',
-    ['$scope', '$cookies', '$cookieStore', '$rootScope', '$location', 'LoginService',
-    function ($scope, $cookies, $cookieStore, $rootScope, $location, LoginService) {
+    ['$scope', '$cookies', '$cookieStore', 'md5', '$rootScope', '$location', 'LoginService',
+    function ($scope, $cookies, $cookieStore, md5, $rootScope, $location, LoginService) {
         // reset login status
        // LoginService.ClearCredentials();
  $scope.user = {username: "", password: ""};
@@ -23,7 +23,7 @@ controllers.controller('loginController',
 $scope.loginMe = function()
         {
             var username = $scope.username;
-            var password = $scope.password;
+            var password = md5.createHash($scope.password);
             
             LoginService.Login(username, password)
                     .success(function () {
