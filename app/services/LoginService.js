@@ -3,11 +3,11 @@ services.factory('LoginService',
    // function ($http, $rootScope, Base64, $cookieStore, $timeout) {
    function ($http, $rootScope, $timeout) {
         var service = {};
- 
+   var serviceBase = '/NWT2015Tim14/index.php/';
         service.Login = function (username, password, callback) {
  
             /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
+             ----------------------------------------------
             $timeout(function(){
                 var response = { success: username === 'test' && password === 'test' };
                 if(!response.success) {
@@ -15,8 +15,10 @@ services.factory('LoginService',
                 }
                 callback(response);
             }, 1000);
- 
- 
+ */
+                 return $http.get(serviceBase + 'api/login/'+username+'/'+password);
+
+
             /* Use this for real authentication
              ----------------------------------------------*/
 //            $http.post('/api/log', { username: username, password: password })
@@ -27,7 +29,9 @@ services.factory('LoginService',
         };
 //         return service;
 //    }]);
-  
+  service.checkIfAdmin  = function (username, password, callback) {
+                return $http.get(serviceBase + 'api/getLoggedUser/' + username);
+  };
         service.SetCredentials = function (username, password) {
             //var authdata = Base64.encode(username + ':' + password);
   

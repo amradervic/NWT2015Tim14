@@ -67,6 +67,9 @@ return array(
                         array('api/checkforupdate', 'pattern'=>'api/checkforupdate/<idKorisnik:[\w-]+>', 'verb'=>'GET'),
                         array('api/activate', 'pattern'=>'api/activate/<email:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
                         array('api/reset', 'pattern'=>'api/reset/<email:[^@]+@\w+\.\w+>', 'verb'=>'GET'),
+                        array('api/login', 'pattern'=>'api/login/<un:\w+>/<pw:\w+>', 'verb'=>'GET'),
+                        array('api/getLoggedUser', 'pattern'=>'api/getLoggedUser/<un:\w+>', 'verb'=>'GET'),
+
                         array('api/list', 'pattern'=>'api/<model:\w+>', 'verb'=>'GET'),
                         array('api/view', 'pattern'=>'api/<model:\w+>/<id:[\w-]+>', 'verb'=>'GET'),
 						array('api/view', 'pattern'=>'api/<model:\w+>/<korisnickoIme:[\w-]+>', 'verb'=>'GET'),

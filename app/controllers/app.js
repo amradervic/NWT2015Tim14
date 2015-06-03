@@ -2,17 +2,17 @@
 var services = angular.module('services', ['ngResource']);
 var controllers = angular.module('controllers', ['ngResource']);
 var directive= angular.module('directive', ['ngResource']);
-
+//var ngCookies=angular.module('ngCookies', ['ngCookies']);
 var app, deps;
 
   deps = ['treeGrid','xtForm',
           'controllers','pascalprecht.translate','services','http-auth-interceptor','ngSanitize','ui.bootstrap.modal','ui.router',
           'ui.bootstrap.tabs','ui.select','ui.bootstrap.datepicker','ui.bootstrap.dateparser','directive', 'ui.bootstrap.navbar'];
 
-app = angular.module('placestogoApp', ['ngRoute', 'services', 'controllers', 'directive', 'pascalprecht.translate', 'chart.js']);
-
+app = angular.module('placestogoApp', ['ngRoute', 'ngCookies' ,'services', 'controllers', 'directive', 'pascalprecht.translate', 'chart.js']);
+//angular.module('app', ['ngCookies']);
 // konfiguracija ruta
-app.config(function($routeProvider, $httpProvider, $translateProvider) {
+app.config(function($routeProvider, $httpProvider, $translateProvider, $cookiesProvider) {
 	$routeProvider
 
             // route for the home page
@@ -25,7 +25,7 @@ app.config(function($routeProvider, $httpProvider, $translateProvider) {
             // route for the login page
             .when('/login', {
 			templateUrl : 'views/login.html',
-			controller  : 'korisnikController'
+			controller  : 'loginController'
 		})
 
             // route for the registration page

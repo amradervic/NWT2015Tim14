@@ -20,7 +20,30 @@ class ApiController extends Controller
     {
             return array();
     }
- 
+  public function actionLogin()
+    {
+        // Check if username was submitted via GET
+        if(!isset($_GET['un']))
+            $this->_sendResponse(500, 'Error: Parameter <b>un</b> is missing' );
+        // Check if username was submitted via GET
+        if(!isset($_GET['pw']))
+            $this->_sendResponse(500, 'Error: Parameter <b>pw</b> is missing' );
+        // $model = User::model()->findByPk($_GET['id']);
+        $model = Korisnik::model()->findByAttributes(array('korisnickoIme'=>$_GET['un']));
+        // Did we find the requested User? If not, raise an error
+        if(is_null($model))
+            $this->_sendResponse(404, 'No User found with username '.$_GET['un']);
+        if($model->sifra != $_GET['pw'])
+            $this->_sendResponse(404, 'Wrong password '.$_GET['un']);
+        else
+            $this->_sendResponse(200, CJSON::encode($model));
+    }
+    
+    public function actionGetLoggedUser()
+    {
+        $user = Korisnik::model()->findAllByAttributes(array('korisnickoIme'=>$_GET['un'] ));
+        $this->_sendResponse(200, CJSON::encode($user));
+    }
     // Actions
     public function actionList()
     {
