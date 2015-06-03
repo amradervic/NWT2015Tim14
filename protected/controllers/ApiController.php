@@ -35,6 +35,10 @@ class ApiController extends Controller
             $this->_sendResponse(404, 'No User found with username '.$_GET['un']);
         if($model->sifra != $_GET['pw'])
             $this->_sendResponse(404, 'Wrong password '.$_GET['un']);
+       else if ($model->banovan == 1)
+           $this->_sendResponse(403, 'User banned '.$_GET['un']);
+       else  if ($model->aktivan != 1)
+            $this->_sendResponse(401, 'User not active '.$_GET['un']);
         else
             $this->_sendResponse(200, CJSON::encode($model));
     }
@@ -407,12 +411,9 @@ public function actionUpdate()
     foreach($put_vars as $var=>$value) {
         // Does model have this attribute? If not, raise an error
         if($model->hasAttribute($var)) {
-
-           if($var=='sifra')
-            $model->$var=md5($value);
-        else {
+       
             $model->$var = $value; 
-        }
+   
     }
         else {
             $this->_sendResponse(500,
