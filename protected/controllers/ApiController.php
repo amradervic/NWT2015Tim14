@@ -185,7 +185,7 @@ $criteria->params = array(':korisnickoIme'=>$_GET['id']);
                                 $model = new Ocjena;                    
                                 break;
                         case 'privatneporuke':
-                                $model = new PrivatnaPoruka;                    
+                                $model = new PrivatnaPoruka();                    
                                 break;
                         case 'recenzije':
                                 $model = new Recenzija;                    

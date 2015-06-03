@@ -1,10 +1,9 @@
-controllers.controller('porukaController',['$scope', 'porukaFactory', 
-        function ($scope, porukaFactory) {
-
+controllers.controller('porukaController',['$scope', 'porukaFactory', 'korisnikFactory',
+        function ($scope, porukaFactory, korisnikFactory) {
+		$scope.poruke={};
     //$scope.status;
   // $scope.poruke='reii';
     //$scope.orders;
-
 
    
 
@@ -49,9 +48,28 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
           .error(function (error) {
               $scope.status = 'Unable to update poruka: ' + error.message;
           });
-    };
+    }
 
-    function insertPoruka(por){
+    $scope.insertPoruka=function(){
+		console.log('prvi');
+		var por={
+					"naslov": "test",
+					"poruka": "poeruka test",
+					"Korisnici_idKorisnik": "63a3491a-ede9-11e4-bc91-00269e6cceac",
+					"Korisnici_idKorisnik1":"ebdf583e-edea-11e4-bc91-00269e6cceac"
+				};
+		 porukaFactory.insertPoruka(por)
+            .success(function (data) {
+                
+				console.log("drugi");
+                //$scope.status = 'Inserted Poruka! Refreshing poruka list.';
+                $scope.poruke.push(por);
+                console.log(data);
+            }).
+            error(function(error) {
+                $scope.status = 'Unable to insert Poruka: ' + error.message;
+            });
+		
         //Fake  data
 /*
         var por = {
@@ -61,8 +79,8 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
             "Korisnici_idKorisnik": "47b0997a-d222-11e4-a5ae-74867a3dbcef",
             "Korisnici_idKorisnik1":"574b9989-d256-11e4-a5ae-74867a3dbcef"
         };
-*/
-
+		
+		};
         porukaFactory.insertPoruka(por)
             .success(function (data) {
                 $scope.status = 'Inserted Poruka! Refreshing poruka list.';
@@ -73,6 +91,8 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
                 $scope.status = 'Unable to insert poruka: ' + error.message;
             });
         }
+*/
+};
 
     function deletePoruka (id) {
         porukaFactory.deletePoruka(id)
@@ -90,7 +110,7 @@ controllers.controller('porukaController',['$scope', 'porukaFactory',
         .error(function (error) {
             $scope.status = 'Unable to delete poruka: ' + error.message;
         });
-    };
+    }
 
 }]);
 

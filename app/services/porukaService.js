@@ -18,7 +18,19 @@ services.factory('porukaFactory', function($http) {
     };
 
     factory.insertPoruka = function (poruka) {
-        return $http.post(urlBase, poruka);
+        return $http({
+                            method : 'POST',
+                            url : urlBase,
+                            data : poruka
+                        })
+           .success(function(){
+                $.notify("Poruka je uspjesno dodana!", "success");
+
+                            
+                        })
+                         .error(function(){
+                             $.notify("Greska u procesiranju zahtjeva", "danger");
+                        });
     };
 
     factory.updatePoruka = function (poruka,id) {

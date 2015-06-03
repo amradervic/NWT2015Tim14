@@ -53,6 +53,10 @@ app.config(function($routeProvider, $httpProvider, $translateProvider, $cookiesP
       templateUrl : 'views/search.html',
       controller  : 'objekatController'
              })   
+			 .when('/messages', {
+      templateUrl : 'views/messages.html',
+      controller  : 'porukaController'
+             })   
              
              .when('/dashboard', {
       templateUrl : 'views/dashboard.html',

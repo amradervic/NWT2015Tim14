@@ -30,6 +30,8 @@
 <script src="services/objekatService.js"></script>
 <script src="controllers/objekatController.js"></script>
 <script src="controllers/dashboardController.js"></script>
+<script src="services/porukaService.js"></script>
+<script src="controllers/porukaController.js"></script>
 <!--
 <script src="services/logService.js"></script>
 <script src="controllers/logController.js"></script>
@@ -61,6 +63,7 @@
 <script src="directives/PrevodEnBsDirective.js"></script>
     <script src="directives/listOfKomentari.js"></script>
        <script src="directives/SearchObjectDirective.js"></script>
+<script src="directives/SearchUsersDirective.js"></script>
 </head>
 
 <body  ng-app="placestogoApp">
@@ -79,6 +82,7 @@
 	<li><a ng-show="!isAuthenticated" href="#/reset"><i></i> Reset password</a></li>
         <li><a href="#/profil"><i></i> Profil</a></li>
         <li><a href="#/search"><i></i> Search</a></li>
+		<li><a href="#/messages"><i></i> Messages</a></li>
         <li><a ng-show="isLoggedAdmin" href="#/dashboard"><i></i>Dashboard</a></li>
         <li><a ng-show="isLoggedAdmin" href="#/useradministration"><i></i>User Administration</a></li>
          <li><a ng-show="isAuthenticated" href="#" ng-click="Logout()">Logout</a> </li>
