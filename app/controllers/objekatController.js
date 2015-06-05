@@ -141,6 +141,17 @@ function getOcjene(){
         });
     };
     
+      $scope.IsVisible = false;
+  
+          
+            $scope.ShowHide = function () {
+                //If DIV is visible it will be hidden and vice versa.
+                $scope.IsVisible = $scope.IsVisible ? false : true;
+            };
+       
+    
+    
+    
      var daftPoints = [[0, 4]],
         punkPoints = [[1, 20]];
     
