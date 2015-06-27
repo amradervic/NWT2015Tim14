@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script src="js/jquery.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
+
+<script src="js/angular-route.js"></script>
+<script src="js/angular-resource.js"></script>
+<script src="js/ui-bootstrap-tpls-0.10.0.js"></script>
+<script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+<script src="js/notify.min.js"></script>
+<script src="js/Chart.js"></script>
+<script src="js/angular-md5.js"></script>
+<script src="chart/angular-chart.js"></script>
+<!--<script src="js/Chart.min.js"></script>-->
+<!--<script src="controllers/personController.js"></script>-->
+<!--<script src="controllers/korisnikController.js"></script>
+<script src="controllers/mainController.js"></script>
+ <script src="js/angular.js"></script>
+<script src="js/angular-cookies.js"></script>-->
+<script src="controllers/app.js"></script>
+<script src="services/LoginService.js"></script>
+<script src="controllers/loginController.js"></script>
+<script src="services/ocjenaService.js"></script>
+<script src="controllers/ocjenaController.js"></script>
+<script src="services/korisnikService.js"></script>
+<script src="controllers/korisnikController.js"></script>
+<script src="services/objekatService.js"></script>
+<script src="controllers/objekatController.js"></script>
+<script src="controllers/dashboardController.js"></script>
+<script src="services/porukaService.js"></script>
+<script src="controllers/porukaController.js"></script>
+<!--
+<script src="services/logService.js"></script>
+<script src="controllers/logController.js"></script>
+<script src="services/porukaService.js"></script>
+<script src="controllers/porukaController.js"></script>
+<script src="services/kategorijaService.js"></script>
+<script src="controllers/kategorijaController.js"></script>
+
+-->
+<script src="js/chart.js"></script>
+<script src="js/angular-translate.js"></script>
+<script src="controllers/TranslateController.js"></script>
+
+    <script src="services/komentarService.js"></script>
+    <script src="controllers/komentarController.js"></script>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-route.min.js"></script>
+<!--<script type="application/javascript" src="http://jsonip.appspot.com/?callback=getip"></script>-->
+
+<link href="chart/angular-chart.css" rel="stylesheet">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="css/placestogo.css" rel="stylesheet">
+<!--<link href="assets/32979dd6/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen">-->
+<script src="directives/listOfObjectsDirective.js"></script>
+<script src="directives/insertOfObjectDirective.js"></script>
+<script src="directives/PrevodEnBsDirective.js"></script>
+    <script src="directives/listOfKomentari.js"></script>
+       <script src="directives/SearchObjectDirective.js"></script>
+<script src="directives/SearchUsersDirective.js"></script>
+</head>
+
+<body  ng-app="placestogoApp">
+  <div ng-controller="loginController">
+ <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Places To-Go</a>
+      </div>
+        
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="#/home"><i></i> Home</a></li>
+        <li><a ng-show="!isAuthenticated" href="#/login"><i></i> Login</a></li>
+        <li><a ng-show="!isAuthenticated" href="#/registration"><i></i> Registration</a></li>
+	<li><a ng-show="!isAuthenticated" href="#/reset"><i></i> Reset password</a></li>
+        <li><a href="#/profil"><i></i> Profil</a></li>
+        <li><a href="#/search"><i></i> Search</a></li>
+		<li><a href="#/messages"><i></i> Messages</a></li>
+        <li><a ng-show="isLoggedAdmin" href="#/dashboard"><i></i>Dashboard</a></li>
+        <li><a ng-show="isLoggedAdmin" href="#/useradministration"><i></i>User Administration</a></li>
+         <li><a ng-show="isAuthenticated" href="#" ng-click="Logout()">Logout</a> </li>
+</ul>
+          </div>
+  </nav>
+<!--   
+     <div id="main" class="container-fluid col-md-4">
+     <a href="#/addobject">Add Object</a>-->
+                <div ng-view>
+                    
+                </div>
+    
+<!--  </div>-->
+  </div>
+</body>
+
+
